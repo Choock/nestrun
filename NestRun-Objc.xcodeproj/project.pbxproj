@@ -8,24 +8,43 @@
 
 /* Begin PBXBuildFile section */
 		E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68AC1FB07C0D008143E5 /* AppDelegate.m */; };
-		E95B68B01FB07C0D008143E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68AF1FB07C0D008143E5 /* ViewController.m */; };
 		E95B68B31FB07C0D008143E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B11FB07C0D008143E5 /* Main.storyboard */; };
 		E95B68B51FB07C0D008143E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B41FB07C0D008143E5 /* Assets.xcassets */; };
 		E95B68B81FB07C0D008143E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B61FB07C0D008143E5 /* LaunchScreen.storyboard */; };
 		E95B68BB1FB07C0D008143E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68BA1FB07C0D008143E5 /* main.m */; };
+		E95B68CA1FB07E42008143E5 /* EventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68C91FB07E42008143E5 /* EventSource.m */; };
+		E95B68CD1FB08051008143E5 /* ChSimpleRootContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68CC1FB08051008143E5 /* ChSimpleRootContainerVC.m */; };
+		E95B68D31FB0825C008143E5 /* RootContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D01FB0825C008143E5 /* RootContainerVC.m */; };
+		E95B68D51FB082BA008143E5 /* RootSegues.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D41FB082BA008143E5 /* RootSegues.m */; };
+		E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D91FB08C8B008143E5 /* NRLoginVC.m */; };
+		E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */; };
+		E95B68E01FB08E2B008143E5 /* NRNestAccessService.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E95B68A81FB07C0D008143E5 /* NestRun-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NestRun-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95B68AB1FB07C0D008143E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E95B68AC1FB07C0D008143E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E95B68AE1FB07C0D008143E5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E95B68AF1FB07C0D008143E5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E95B68B21FB07C0D008143E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E95B68B41FB07C0D008143E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E95B68B71FB07C0D008143E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E95B68B91FB07C0D008143E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95B68BA1FB07C0D008143E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E95B68C81FB07E42008143E5 /* EventSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventSource.h; sourceTree = "<group>"; };
+		E95B68C91FB07E42008143E5 /* EventSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventSource.m; sourceTree = "<group>"; };
+		E95B68CB1FB08050008143E5 /* ChSimpleRootContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChSimpleRootContainerVC.h; sourceTree = "<group>"; };
+		E95B68CC1FB08051008143E5 /* ChSimpleRootContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChSimpleRootContainerVC.m; sourceTree = "<group>"; };
+		E95B68D01FB0825C008143E5 /* RootContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootContainerVC.m; sourceTree = "<group>"; };
+		E95B68D11FB0825C008143E5 /* RootSegues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootSegues.h; sourceTree = "<group>"; };
+		E95B68D21FB0825C008143E5 /* RootContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootContainerVC.h; sourceTree = "<group>"; };
+		E95B68D41FB082BA008143E5 /* RootSegues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootSegues.m; sourceTree = "<group>"; };
+		E95B68D61FB083FA008143E5 /* appmacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = appmacros.h; sourceTree = "<group>"; };
+		E95B68D81FB08C8B008143E5 /* NRLoginVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRLoginVC.h; sourceTree = "<group>"; };
+		E95B68D91FB08C8B008143E5 /* NRLoginVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRLoginVC.m; sourceTree = "<group>"; };
+		E95B68DB1FB08CA0008143E5 /* NRLobbyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRLobbyVC.h; sourceTree = "<group>"; };
+		E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRLobbyVC.m; sourceTree = "<group>"; };
+		E95B68DE1FB08E2B008143E5 /* NRNestAccessService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRNestAccessService.h; sourceTree = "<group>"; };
+		E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRNestAccessService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,17 +77,110 @@
 		E95B68AA1FB07C0D008143E5 /* NestRun-Objc */ = {
 			isa = PBXGroup;
 			children = (
+				E95B68C21FB07C79008143E5 /* res */,
+				E95B68C11FB07C31008143E5 /* app */,
+				E95B68C31FB07CA4008143E5 /* gui */,
+				E95B68C41FB07CB2008143E5 /* logic */,
+				E95B68C51FB07CBA008143E5 /* services */,
+				E95B68C61FB07CC5008143E5 /* model */,
+				E95B68C71FB07CCE008143E5 /* common */,
+			);
+			path = "NestRun-Objc";
+			sourceTree = "<group>";
+		};
+		E95B68C11FB07C31008143E5 /* app */ = {
+			isa = PBXGroup;
+			children = (
 				E95B68AB1FB07C0D008143E5 /* AppDelegate.h */,
 				E95B68AC1FB07C0D008143E5 /* AppDelegate.m */,
-				E95B68AE1FB07C0D008143E5 /* ViewController.h */,
-				E95B68AF1FB07C0D008143E5 /* ViewController.m */,
+				E95B68BA1FB07C0D008143E5 /* main.m */,
+				E95B68B91FB07C0D008143E5 /* Info.plist */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		E95B68C21FB07C79008143E5 /* res */ = {
+			isa = PBXGroup;
+			children = (
 				E95B68B11FB07C0D008143E5 /* Main.storyboard */,
 				E95B68B41FB07C0D008143E5 /* Assets.xcassets */,
 				E95B68B61FB07C0D008143E5 /* LaunchScreen.storyboard */,
-				E95B68B91FB07C0D008143E5 /* Info.plist */,
-				E95B68BA1FB07C0D008143E5 /* main.m */,
 			);
-			path = "NestRun-Objc";
+			path = res;
+			sourceTree = "<group>";
+		};
+		E95B68C31FB07CA4008143E5 /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68CE1FB08054008143E5 /* basic */,
+				E95B68CF1FB08065008143E5 /* root */,
+				E95B68D71FB08C58008143E5 /* shell */,
+			);
+			path = gui;
+			sourceTree = "<group>";
+		};
+		E95B68C41FB07CB2008143E5 /* logic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = logic;
+			sourceTree = "<group>";
+		};
+		E95B68C51FB07CBA008143E5 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68DE1FB08E2B008143E5 /* NRNestAccessService.h */,
+				E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		E95B68C61FB07CC5008143E5 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E95B68C71FB07CCE008143E5 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68D61FB083FA008143E5 /* appmacros.h */,
+				E95B68C81FB07E42008143E5 /* EventSource.h */,
+				E95B68C91FB07E42008143E5 /* EventSource.m */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		E95B68CE1FB08054008143E5 /* basic */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68CB1FB08050008143E5 /* ChSimpleRootContainerVC.h */,
+				E95B68CC1FB08051008143E5 /* ChSimpleRootContainerVC.m */,
+			);
+			path = basic;
+			sourceTree = "<group>";
+		};
+		E95B68CF1FB08065008143E5 /* root */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68D11FB0825C008143E5 /* RootSegues.h */,
+				E95B68D41FB082BA008143E5 /* RootSegues.m */,
+				E95B68D21FB0825C008143E5 /* RootContainerVC.h */,
+				E95B68D01FB0825C008143E5 /* RootContainerVC.m */,
+			);
+			path = root;
+			sourceTree = "<group>";
+		};
+		E95B68D71FB08C58008143E5 /* shell */ = {
+			isa = PBXGroup;
+			children = (
+				E95B68D81FB08C8B008143E5 /* NRLoginVC.h */,
+				E95B68D91FB08C8B008143E5 /* NRLoginVC.m */,
+				E95B68DB1FB08CA0008143E5 /* NRLobbyVC.h */,
+				E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */,
+			);
+			path = shell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +254,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E95B68B01FB07C0D008143E5 /* ViewController.m in Sources */,
+				E95B68D51FB082BA008143E5 /* RootSegues.m in Sources */,
+				E95B68E01FB08E2B008143E5 /* NRNestAccessService.m in Sources */,
+				E95B68CD1FB08051008143E5 /* ChSimpleRootContainerVC.m in Sources */,
+				E95B68D31FB0825C008143E5 /* RootContainerVC.m in Sources */,
 				E95B68BB1FB07C0D008143E5 /* main.m in Sources */,
+				E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */,
 				E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */,
+				E95B68CA1FB07E42008143E5 /* EventSource.m in Sources */,
+				E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +398,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TU4JNXZB52;
-				INFOPLIST_FILE = "NestRun-Objc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NestRun-Objc/app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "us.mechanik.NestRun-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -294,7 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TU4JNXZB52;
-				INFOPLIST_FILE = "NestRun-Objc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/NestRun-Objc/app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "us.mechanik.NestRun-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  NRLoginVC.h
 //  NestRun-Objc
 //
 //  Created by Dima Choock on 06/11/2017.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface NRLoginVC : UIViewController
 
 @end
-
