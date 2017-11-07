@@ -11,6 +11,8 @@
 @interface NestAccessToken : NSObject
 
     @property(readonly) NSString* string;
+    @property(readonly) NSString* bearer;
+    @property(readonly) NSDate*   expiresOn;
 
 @end
 

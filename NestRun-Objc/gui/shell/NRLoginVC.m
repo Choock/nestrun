@@ -7,9 +7,9 @@
 //
 
 #import "NRLoginVC.h"
-#import "NRNestAccessService.h"
 #import "RootContainerVC.h"
 #import "RootSegues.h"
+#import "NRNestAccessService.h"
 
 @interface NRLoginVC ()
 
@@ -28,7 +28,7 @@
 {
     [super viewWillAppear:animated];
     NRLoginVC* __weak weakself = self;
-    [NRNestAccessService.shared loginIn:_loginWebView 
+    [[NRNestAccessService shared] loginIn:self.loginWebView
     callback:
     ^(BOOL success) 
     {

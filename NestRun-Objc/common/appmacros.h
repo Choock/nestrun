@@ -1,6 +1,6 @@
 //
-//  BMAppMacros.h
-//  BrainMechanics
+//  AppMacros.h
+//  App Components
 //
 //  Created by Dmitry Demenchoock on 11/8/14.
 //  Copyright (c) 2014 UAB Mechanikus Ltd. All rights reserved.

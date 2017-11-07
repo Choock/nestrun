@@ -19,6 +19,7 @@
 		E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D91FB08C8B008143E5 /* NRLoginVC.m */; };
 		E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */; };
 		E95B68E01FB08E2B008143E5 /* NRNestAccessService.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */; };
+		E95B68E31FB0BD9E008143E5 /* NRNestCameraFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68E21FB0BD9E008143E5 /* NRNestCameraFetcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRLobbyVC.m; sourceTree = "<group>"; };
 		E95B68DE1FB08E2B008143E5 /* NRNestAccessService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRNestAccessService.h; sourceTree = "<group>"; };
 		E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRNestAccessService.m; sourceTree = "<group>"; };
+		E95B68E11FB0BD9E008143E5 /* NRNestCameraFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRNestCameraFetcher.h; sourceTree = "<group>"; };
+		E95B68E21FB0BD9E008143E5 /* NRNestCameraFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRNestCameraFetcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +134,8 @@
 			children = (
 				E95B68DE1FB08E2B008143E5 /* NRNestAccessService.h */,
 				E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */,
+				E95B68E11FB0BD9E008143E5 /* NRNestCameraFetcher.h */,
+				E95B68E21FB0BD9E008143E5 /* NRNestCameraFetcher.m */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */,
 				E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */,
 				E95B68CA1FB07E42008143E5 /* EventSource.m in Sources */,
+				E95B68E31FB0BD9E008143E5 /* NRNestCameraFetcher.m in Sources */,
 				E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

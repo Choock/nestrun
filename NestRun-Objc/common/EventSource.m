@@ -24,6 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "EventSource.h"
+//#import "NRNestAccessService.h"
 #import <CoreGraphics/CGBase.h>
 
 static CGFloat const ES_RETRY_INTERVAL = 1.0;
@@ -136,7 +137,8 @@ static NSString *const ESEventRetryKey = @"retry";
 didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
 {
     NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-    if (httpResponse.statusCode == 200) {
+    if (httpResponse.statusCode == 200) 
+    {
         // Opened
         Event *e = [Event new];
         e.readyState = kEventStateOpen;
@@ -233,8 +235,17 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
 {
     wasClosed = NO;
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.eventURL
-                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:self.timeoutInterval];
+    // TODO: move outside
+    NSDictionary *headers = @{ @"accept": @"text/event-stream",
+                               @"authorization": @"Bearer c.TFmINLt7JgXfRIu9HrP306Xn4nhktF6GJ7FeqVbfGCXRZoeWXXiPJqGIjYR8t6EixCqhH7UmKZ5UHal3AVb3ZjZGaYHpK49iFVcUFFXUCTIGSlEpKfOZRBPaOKUZIgccRNAEQUmLJNGO4G55",
+                               @"content-type": @"application/json",
+                               @"cache-control": @"no-cache"};
+    
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPMethod:@"GET"];
+    
     if (self.lastEventID) {
         [request setValue:self.lastEventID forHTTPHeaderField:@"Last-Event-ID"];
     }

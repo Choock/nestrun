@@ -10,28 +10,38 @@
 #import "NRNestAccessService.h"
 
 @interface NestAccessToken()
-    @property(nonatomic, readwrite) NSString* string;
+    @property(readwrite) NSString* string;
+    @property(readwrite) NSDate*   expiresOn;
 @end 
 
 @implementation NestAccessToken
-{
-    NSDate* _expiresOn;
-}
 
 - (NSString*) string
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"natString"];
 }
+- (NSString*) bearer
+{
+    return [NSString stringWithFormat:@"Bearer %@",self.string];
+}
 - (void) setString:(NSString*) value
 {
     [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"natString"];
+}
+- (NSDate*) expiresOn
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"natDate"];
+}
+- (void) setExpiresOn:(NSDate*) value
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"natDate"];
 }
 
 - (BOOL) isValid
 {
     if (self.string != nil)
     {
-        if ([[NSDate date] compare:_expiresOn] == NSOrderedAscending) {return YES;}
+        if ([[NSDate date] compare:self.expiresOn] == NSOrderedAscending) {return YES;}
     }
     return NO;
 }
@@ -40,7 +50,7 @@
 {
     NSNumber* interval = json[@"expires_in"];
     NSString* token    = json[@"access_token"];
-    if(interval != nil) {_expiresOn = [[NSDate date] dateByAddingTimeInterval:[interval doubleValue]];}
+    if(interval != nil) {self.expiresOn = [[NSDate date] dateByAddingTimeInterval:[interval doubleValue]];}
     if(token != nil)    {self.string = token;}
 }
 
@@ -54,6 +64,7 @@ static NSString* PRODUCT_REDIR_HOST  = @"https://localhost:8080";
 static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
 
 @interface NRNestAccessService() <UIWebViewDelegate>
+    @property(readwrite) NestAccessToken* accessToken;
 @end
 
 @implementation NRNestAccessService
@@ -65,7 +76,7 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
 
 - (BOOL) accessGranted
 {
-    return [_accessToken isValid];
+    return [self.accessToken isValid];
 }
 
 - (void) loginIn:(UIWebView*)view callback:(AccessReceived) block
@@ -101,18 +112,21 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                              options:kNilOptions
                                                                error:&error];
-        if(!json) 
-        {
-            NSLog(@"NestAuthService Token Response ERROR: invalide responce data" );
-            _accessCallback(NO);
-            _accessCallback = nil;
-            return;
-        }
-        if(!_accessToken) _accessToken = [[NestAccessToken alloc] init];
-        [_accessToken resetWith:json];
+        
+        if     (!json)                 {[self handleAccessError:@"invalide responce data" description:@""];return;}
+        else if(json[@"error"] != nil) {[self handleAccessError:json[@"error"] description:json[@"error_description"]];return;}
+
+        [self.accessToken resetWith:json];
         _accessCallback(YES);
         _accessCallback = nil;
     }] resume];
+}
+
+- (void) handleAccessError:(NSString*)name description:(NSString*)description
+{
+    NSLog(@"NestAuthService Token Response ERROR: %@ %@", name, description);
+    _accessCallback(NO);
+    _accessCallback = nil;
 }
 
 #pragma mark - WEBVIEW DELEGATE
@@ -135,7 +149,7 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
     }
     if(!code) return YES;
     
-    NSString* request_token_url = [NSString stringWithFormat:@"https://api.%@/oauth2/access_token?code=%@&client_id=%@)&client_secret=%@&grant_type=authorization_code", NEST_HOST, code, NEST_PRODICT_ID, NEST_PRODUCT_SECRET];
+    NSString* request_token_url = [NSString stringWithFormat:@"https://api.%@/oauth2/access_token?code=%@&client_id=%@&client_secret=%@&grant_type=authorization_code", NEST_HOST, code, NEST_PRODICT_ID, NEST_PRODUCT_SECRET];
     [self getNestAccessWith:request_token_url];
     return NO;
 }
@@ -148,6 +162,15 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
     static NRNestAccessService* _instance;
     dispatch_once(&pred, ^{ _instance = [[self alloc] init];});
     return _instance;
+}
+
+- (instancetype) init
+{
+    if(self=[super init])
+    {
+        self.accessToken = [[NestAccessToken alloc] init];
+    }
+    return self;
 }
 
 @end

@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     [self setup];
-    BOOL acces_granted = NRNestAccessService.shared.accessGranted;
+    BOOL acces_granted = [NRNestAccessService shared].accessGranted;
                           
     if(!acces_granted) [self performSegueWithIdentifier:[RootLoginSegue sid] sender:nil];
     else               [self performSegueWithIdentifier:[RootLobbySegue sid] sender:nil];
