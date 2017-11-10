@@ -19,6 +19,8 @@
 #define STRING_NAME(name) static NSString*  name=@#name;
 #define FLOAT_CONTS(name,value) static const CGFloat name = value;
 #define EQS(str1,str2) [str1 isEqualToString:str2]
+#define NOTEMPTY(str)  (str != nil && str.length != 0)
+#define EMPTY(str)  (str == nil || str.length == 0)
 
 // ALIASE MACROS
 #define ST_INLINE static __inline__

@@ -6,31 +6,92 @@
 //  Copyright © 2017 Dima Choock. All rights reserved.
 //
 
+#import "appmacros.h"
 #import "NRNestCameraFetcher.h"
 #import "NRNestAccessService.h"
 #import "EventSource.h"
+#import "NRCommonExtensions.h"
+
+@interface CameraEvent()
+
+    @property(nonatomic,readwrite) NSDate* eventStart;
+    @property(nonatomic,readwrite) NSDate* eventStop;
+
+@end
+
+@implementation CameraEvent
+
++ (instancetype) cameraEventStarted:( NSDate* _Nonnull )start stopped:(NSDate* _Nullable)stop motion:(BOOL)motion sound:(BOOL)sound person:(BOOL)person
+{
+    CameraEvent* event = [[CameraEvent alloc] init];
+    event.eventStart = start;
+    event.eventStop  = stop;
+    event.type = (motion ? cet_motion : cet_nothing) | (sound ? cet_sound : cet_nothing) | (person ? cet_person : cet_nothing);
+    return event;
+}
+
+@end
+
+@interface NRNestCameraFetcher()
+
+    @property(readonly) NSMutableDictionary<NSString*,CameraEventHandler>* cameraEventListeners;
+    @property(readonly) NSMutableDictionary<NSString*,NSDate*>* cameraEventStarts;
+    @property(readonly) NSMutableDictionary<NSString*,NSDate*>* cameraEventStops;
+
+@end
 
 @implementation NRNestCameraFetcher
 {
     NSDictionary* _cameras;   // full json
     NSDictionary* _cameraIDs; // {name:id}
-    NSDictionary* _lastEvents;// {name:event_dictionary}
+    
+    NSMutableDictionary<NSString*,CameraEventHandler>* _cameraEventListeners;
+    NSMutableDictionary<NSString*,NSDate*>* _cameraEventStarts;
+    NSMutableDictionary<NSString*,NSDate*>* _cameraEventStops;
 }
 
-#pragma mark - INTERFACE
+- (NSMutableDictionary<NSString*,CameraEventHandler>*) cameraEventListeners
+{
+    if(_cameraEventListeners == nil ) _cameraEventListeners = [[NSMutableDictionary alloc] init];
+    return _cameraEventListeners;
+}
+- (NSMutableDictionary<NSString*,NSDate*>*) cameraEventStarts
+{
+    if(_cameraEventStarts == nil ) _cameraEventStarts = [[NSMutableDictionary alloc] init];
+    return _cameraEventStarts;
+}
+- (NSMutableDictionary<NSString*,NSDate*>*) cameraEventStops
+{
+    if(_cameraEventStops == nil ) _cameraEventStops = [[NSMutableDictionary alloc] init];
+    return _cameraEventStops;
+}
+
+#pragma mark - ACCESS INTERFACE
 
 - (NSDictionary*) cameraIDs
 {
     return _cameraIDs;
 }
-- (NSDictionary*) cameraLatEvents
-{
-    return _lastEvents;
-}
 - (NSArray*) cameraNames
 {
     return [_cameraIDs allKeys];
 }
+
+- (void) switchOnListenerForCameraID:(NSString*)cid handler:(CameraEventHandler)eventHandler
+{
+    [self.cameraEventListeners setObject:eventHandler forKey:cid];
+    [self.cameraEventStarts setObject:[NSDate date] forKey:cid];
+    [self.cameraEventStops setObject:[NSDate date] forKey:cid];
+}
+- (void) switchOffListenerForCameraID:(NSString*)cid
+{
+    if(self.cameraEventListeners.count == 0 ) return;
+    [self.cameraEventListeners removeObjectForKey:cid];
+    [self.cameraEventStarts removeObjectForKey:cid];
+    [self.cameraEventStops removeObjectForKey:cid];
+}
+
+#pragma mark - CONTROL INTERFACE
 
 - (void) listenCameras
 {
@@ -39,18 +100,21 @@
     // DATA UPDATED
     [source addEventListener:@"put" handler:^(Event *e) 
     {
-        //NSLog(@"%@: %@", e.event, e.data);
         NSData* json_data = [e.data dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:json_data
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-        NSLog(@"LAST CAMERA EVENT RECEIVED");
+        NSDictionary* events_data = json[@"data"];
+        if(events_data!=nil)
+        {
+            [self updateCameraEventListenersWith:events_data];
+        }
     }];
     
     // ALL EVENTS
-    [source onMessage:^(Event *e) {
-        //NSLog(@"%@: %@", e.event, e.data);
-    }];
+//    [source onMessage:^(Event *e) {
+//        NSLog(@"%@: %@", e.event, e.data);
+//    }];
 }
 
 - (void) fetchCameras:(FetcherCompletionHandler)handler
@@ -89,6 +153,68 @@
         handler(YES);
     }];
     [dataTask resume];
+}
+
+#pragma mark - ROUTINES
+
+- (void) updateCameraEventListenersWith:(NSDictionary<NSString*,NSDictionary*>*)data
+{
+    if(_cameraEventListeners.count <= 0) return;
+    
+    [data enumerateKeysAndObjectsUsingBlock:
+     ^(NSString* _Nonnull cid, NSDictionary* _Nonnull event, BOOL* _Nonnull stop) 
+    {
+        CameraEventHandler handler = _cameraEventListeners[cid];
+        if(handler == nil) return;
+        
+        NSDictionary* cam_event_dict = event[@"last_event"];
+        if(cam_event_dict == nil) return;
+        
+        NSString* event_start_string = cam_event_dict[@"start_time"];
+        NSString* event_stop_string = cam_event_dict[@"end_time"];
+        if(EMPTY(event_start_string) || EMPTY(event_stop_string)) return;
+        NSDate* event_start = [NSDate getDateFromDateString: event_start_string];
+        NSDate* event_stop  = [NSDate getDateFromDateString: event_stop_string];
+        NSDate* last_start  = self.cameraEventStarts[cid];
+        NSDate* last_stop   = self.cameraEventStops[cid];
+        
+        BOOL stop_earlier_than_start = [event_start compare:event_stop] == NSOrderedDescending;
+        BOOL start_not_changed       = [event_start compare:last_start] == NSOrderedSame;
+        BOOL stop_not_changed        = [event_stop compare:last_stop] == NSOrderedSame;
+         
+        if(start_not_changed && (stop_not_changed || stop_earlier_than_start)) return;
+        
+        self.cameraEventStarts[cid] = event_start;
+        self.cameraEventStops[cid]  = event_stop;
+        
+        CameraEvent* cam_event = [CameraEvent cameraEventStarted:event_start 
+                                                         stopped:(stop_earlier_than_start)?nil:event_stop 
+                                                          motion:((NSNumber*)cam_event_dict[@"has_motion"]).boolValue 
+                                                           sound:((NSNumber*)cam_event_dict[@"has_sound"]).boolValue 
+                                                          person:((NSNumber*)cam_event_dict[@"has_person"]).boolValue];
+        
+        handler(cam_event);
+    }];
+    
+//    [_cameraEventListeners enumerateKeysAndObjectsUsingBlock:
+//    ^(NSString * _Nonnull cid, CameraEventHandler _Nonnull handler, BOOL * _Nonnull stop) 
+//    {
+//        NSDictionary* cam_event = data[cid][@"last_event"];
+//        if(cam_event == nil) return;
+//        
+//        NSString* event_start_string = cam_event[@"start_time"];
+//        NSString* event_stop_string = cam_event[@"end_time"];
+//        if(EMPTY(event_start_string) || EMPTY(event_stop_string)) return;
+//        
+//        NSDate* event_start = [NSDate getDateFromDateString: event_start_string];
+//        NSDate* event_stop  = [NSDate getDateFromDateString: event_stop_string];
+//        NSDate* last_start  = self.cameraEventStarts[cid];
+//        NSDate* last_stop   = self.cameraEventStops[cid];
+//    
+//        
+//        handler(cam_event);
+//        *stop = YES;
+//    }];
 }
 
 - (void) validateCameraNames
