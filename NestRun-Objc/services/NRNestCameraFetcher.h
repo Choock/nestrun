@@ -19,6 +19,7 @@ typedef void (^FetcherCompletionHandler)(BOOL);
     + (instancetype) shared;   
 
     - (void) fetchCameras:(FetcherCompletionHandler)handler;
-    - (void) fetchEventForCamera:(NSString*)spotName completion:(FetcherCompletionHandler)handler;
+
+    - (void) listenCameras;
 
 @end

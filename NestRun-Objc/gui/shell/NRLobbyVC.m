@@ -24,6 +24,8 @@
     {
         if(success) NSLog(@"CAMERAS FETCHED");
     }];
+    
+    [[NRNestCameraFetcher shared] listenCameras];
 }
 
 

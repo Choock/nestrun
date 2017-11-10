@@ -20,8 +20,15 @@ typedef void (^AccessReceived)(BOOL);
 
 @interface NRNestAccessService : NSObject
 
-    @property(readonly) NestAccessToken* accessToken;
     @property(readonly) BOOL             accessGranted;
+    @property(readonly) NestAccessToken* accessToken;
+    @property(readonly) NSString*        apiPath;
+
+    @property(readonly) NSURL* camerasURL;
+    @property(readonly) NSURL* devicesURL;
+
+    @property(readonly) NSURLRequest* camerasPollRequest;
+    @property(readonly) NSURLRequest* devicesPollRequest;
 
     + (instancetype) shared;
     - (void) loginIn:(UIWebView*)view callback:(AccessReceived) block;

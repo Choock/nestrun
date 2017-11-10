@@ -9,6 +9,8 @@
 #import "appmacros.h"
 #import "NRNestAccessService.h"
 
+#pragma mark - ACCESS TOKEN
+
 @interface NestAccessToken()
     @property(readwrite) NSString* string;
     @property(readwrite) NSDate*   expiresOn;
@@ -56,15 +58,21 @@
 
 @end
 
+#pragma mark - ACCESS SERVICE
+
 static NSString* NEST_HOST           = @"home.nest.com";
 static NSString* NEST_PRODICT_ID     = @"e68c8ac7-2708-449a-a7e4-b008a63ef820";
 static NSString* NEST_PRODUCT_SECRET = @"jyxn6RuIwTF5LmRS1oInREc08";
 static NSString* NEST_AUTH_URL       = @"https://home.nest.com/login/oauth2?client_id=e68c8ac7-2708-449a-a7e4-b008a63ef820&state=STATE";
 static NSString* PRODUCT_REDIR_HOST  = @"https://localhost:8080";
 static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
+static NSString* NEST_API_URL        = @"https://developer-api.nest.com";
 
 @interface NRNestAccessService() <UIWebViewDelegate>
+    
     @property(readwrite) NestAccessToken* accessToken;
+    @property(readwrite) NSString*        apiPath;
+
 @end
 
 @implementation NRNestAccessService
@@ -85,7 +93,58 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
     [self loadNestAuthUIInWebView:view];
 }
 
-#pragma mark - AUTHRIZATION CODE
+- (NSString*) apiPath
+{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"apiPath"];
+}
+- (void) setApiPath:(NSString*) value
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:@"apiPath"];
+}
+
+- (NSURL*) camerasURL
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@devices/cameras/",self.apiPath]];
+}
+- (NSURL*) devicesURL
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@devices/",self.apiPath]];
+}
+
+- (NSURLRequest*) camerasPollRequest
+{
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:self.camerasURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    
+    NSDictionary* headers = @{ 
+                              @"authorization":self.accessToken.bearer,
+                              @"content-type": @"application/json",
+                              @"cache-control": @"no-cache"
+                              };
+    
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPMethod:@"GET"];
+    return request;
+}
+- (NSURLRequest*) devicesStreamRequest
+{
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:self.devicesURL
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    
+    NSDictionary* headers = @{ 
+                              @"authorization":self.accessToken.bearer,
+                              @"content-type": @"application/json",
+                              @"cache-control": @"no-cache"
+                              };
+    
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPMethod:@"GET"];
+    return request;
+}
+
+#pragma mark - AUTHORIZATION CODE
 
 - (void) loadNestAuthUIInWebView:(UIWebView*) view
 {
@@ -117,8 +176,13 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
         else if(json[@"error"] != nil) {[self handleAccessError:json[@"error"] description:json[@"error_description"]];return;}
 
         [self.accessToken resetWith:json];
-        _accessCallback(YES);
-        _accessCallback = nil;
+        
+        [self retriveDirectAPIPath:
+         ^(BOOL success)
+         {
+             _accessCallback(YES);
+             _accessCallback = nil;
+         }];
     }] resume];
 }
 
@@ -153,6 +217,94 @@ static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
     [self getNestAccessWith:request_token_url];
     return NO;
 }
+
+#pragma mark - GETTING real API ENTRY POINT 
+
+typedef void (^APIPathRetrivedHandler)(BOOL);
+
+/// Make api call to obtain real api url: in case of success, the front url, redirected url in case of error.
+/// We use NSURLSession specific behaviour here: on redirection, request headers is cut out, what leads to error, 
+/// and redirection url can be retrieved from the error description.
+- (void) retriveDirectAPIPath:(APIPathRetrivedHandler) handler
+{
+    NSURL* api_url = [NSURL URLWithString:NEST_API_URL];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:api_url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:10.0];
+    
+    NSString* bearer = [NRNestAccessService shared].accessToken.bearer;
+    NSDictionary* headers = @{ 
+                              @"authorization":bearer,
+                              @"content-type": @"application/json",
+                              @"cache-control": @"no-cache"
+                              };
+    
+    [request setAllHTTPHeaderFields:headers];
+    [request setHTTPMethod:@"GET"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+    completionHandler:
+    ^(NSData *data, NSURLResponse *response, NSError *error) 
+    {
+        if(error) 
+        {
+          NSLog(@"%@", error);
+          handler(NO);
+          return;
+        }
+
+        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse *) response;
+        NSLog(@"%@", httpResponse);
+        if(httpResponse.statusCode == 200)
+        {
+            self.apiPath = NEST_API_URL;
+            dispatch_async(dispatch_get_main_queue(), 
+            ^{
+                handler(YES);
+            });
+        }
+        else if(httpResponse.statusCode == 401)
+        {
+            self.apiPath = response.URL.absoluteString;
+            dispatch_async(dispatch_get_main_queue(), 
+            ^{
+                handler(YES);
+            });
+        }
+        else 
+        {
+            dispatch_async(dispatch_get_main_queue(), 
+            ^{
+                handler(YES);
+            });
+        }
+        
+        
+        
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                           options:kNilOptions
+                                                             error:&error];
+//        if(!json)                 
+//        {
+//          [self handleAccessError:@"invalide responce data" description:@""];
+//          handler(NO);
+//          return;
+//        }
+//        else if(json[@"error"] != nil) 
+//        {
+//          [self handleAccessError:json[@"error"] description:json[@"error_description"]];
+//          handler(NO);
+//          return;
+//        }
+//
+//        _cameras = json;
+//        [self validateCameraNames];
+//        handler(YES);
+    }];
+    [dataTask resume];
+}
+
 
 #pragma mark - PERSISTANCE
 

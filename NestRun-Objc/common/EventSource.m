@@ -157,17 +157,20 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
     NSString *eventString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSArray *lines = [eventString componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
+    
     Event *event = [Event new];
     event.readyState = kEventStateOpen;
     
-    for (NSString *line in lines) {
-        if ([line hasPrefix:ESKeyValueDelimiter]) {
-            continue;
-        }
+    for (NSString *line in lines) 
+    {
+        if ([line hasPrefix:ESKeyValueDelimiter]) {continue;}
         
-        if (!line || line.length == 0) {
-            if (event.data != nil) {
-                dispatch_async(messageQueue, ^{
+        if (!line || line.length == 0) 
+        {
+            if (event.data != nil) 
+            {
+                dispatch_async(messageQueue, 
+                ^{
                     [self _dispatchEvent:event];
                 });
                 
@@ -177,7 +180,8 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
             continue;
         }
         
-        @autoreleasepool {
+        @autoreleasepool 
+        {
             NSScanner *scanner = [NSScanner scannerWithString:line];
             scanner.charactersToBeSkipped = [NSCharacterSet whitespaceCharacterSet];
             
@@ -186,19 +190,29 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
             [scanner scanString:ESKeyValueDelimiter intoString:nil];
             [scanner scanUpToCharactersFromSet:[NSCharacterSet newlineCharacterSet] intoString:&value];
             
-            if (key && value) {
-                if ([key isEqualToString:ESEventEventKey]) {
+            if (key && value) 
+            {
+                if ([key isEqualToString:ESEventEventKey]) 
+                {
                     event.event = value;
-                } else if ([key isEqualToString:ESEventDataKey]) {
-                    if (event.data != nil) {
+                } 
+                else if ([key isEqualToString:ESEventDataKey]) 
+                {
+                    if (event.data != nil) 
+                    {
                         event.data = [event.data stringByAppendingFormat:@"\n%@", value];
-                    } else {
+                    } else 
+                    {
                         event.data = value;
                     }
-                } else if ([key isEqualToString:ESEventIDKey]) {
+                } 
+                else if ([key isEqualToString:ESEventIDKey]) 
+                {
                     event.id = value;
                     self.lastEventID = event.id;
-                } else if ([key isEqualToString:ESEventRetryKey]) {
+                } 
+                else if ([key isEqualToString:ESEventRetryKey]) 
+                {
                     self.retryInterval = [value doubleValue];
                 }
             }

@@ -8,6 +8,7 @@
 
 #import "NRNestCameraFetcher.h"
 #import "NRNestAccessService.h"
+#import "EventSource.h"
 
 @implementation NRNestCameraFetcher
 {
@@ -31,26 +32,31 @@
     return [_cameraIDs allKeys];
 }
 
+- (void) listenCameras
+{
+    EventSource *source = [EventSource eventSourceWithURL:[NRNestAccessService shared].camerasURL];
+    
+    // DATA UPDATED
+    [source addEventListener:@"put" handler:^(Event *e) 
+    {
+        //NSLog(@"%@: %@", e.event, e.data);
+        NSData* json_data = [e.data dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:json_data
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+        NSLog(@"LAST CAMERA EVENT RECEIVED");
+    }];
+    
+    // ALL EVENTS
+    [source onMessage:^(Event *e) {
+        //NSLog(@"%@: %@", e.event, e.data);
+    }];
+}
+
 - (void) fetchCameras:(FetcherCompletionHandler)handler
 {
-    // TODO: move this boilerplate to access service in method createRequestFor:
-    NSURL* cameras_url = [NSURL URLWithString:@"https://firebase-apiserver04-tah01-iad01.dapi.production.nest.com:9553/devices/cameras/"];
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:cameras_url
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:10.0];
-    
-    NSString* bearer = [NRNestAccessService shared].accessToken.bearer;
-    NSDictionary* headers = @{ 
-                               @"authorization":bearer,
-                               @"content-type": @"application/json",
-                               @"cache-control": @"no-cache"
-                            };
-    
-    [request setAllHTTPHeaderFields:headers];
-    [request setHTTPMethod:@"GET"];
-    
     NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
+    NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:[NRNestAccessService shared].camerasPollRequest
     completionHandler:
     ^(NSData *data, NSURLResponse *response, NSError *error) 
     {
@@ -96,11 +102,6 @@
         [camera_ids setValue:cid forKey:name];
     }];
     _cameraIDs = camera_ids;
-}
-
-- (void) fetchEventForCamera:(NSString*)spotName completion:(FetcherCompletionHandler)handler
-{
-    
 }
 
 - (void) handleAccessError:(NSString*)name description:(NSString*)description
