@@ -16,3 +16,7 @@
     +(NSString*) sid;
 @end
 
+@interface RootGameSegue : UIStoryboardSegue
+    +(NSString*) sid;
+@end
+

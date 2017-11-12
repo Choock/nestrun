@@ -8,8 +8,11 @@
 
 #import "NRLobbyVC.h"
 #import "NRNestCameraFetcher.h"
+#import "RootContainerVC.h"
+#import "RootSegues.h"
+#import "NRModelNames.h"
 
-@interface NRLobbyVC ()
+@interface NRLobbyVC()
 
 @end
 
@@ -18,44 +21,52 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    [[NRNestCameraFetcher shared] fetchCameras:
-    ^(BOOL success) 
-    {
-        if(success) NSLog(@"CAMERAS FETCHED");
-        // Это все игровой а не лобби код, здесь мы ждем пока все не проапдейтится показываем реди стеди го и вот го не показываем
-        // пока не получили данные по камерам, а как только получили запускаем лисн и добавляем хендлеры
-        
-        NSString* entry_cam_id = [NRNestCameraFetcher shared].cameraIDs[@"Entryway (1ce6)"];
-        NRLobbyVC* __weak wself = self;
-        [[NRNestCameraFetcher shared] switchOnListenerForCameraID:entry_cam_id 
-        handler:
-        ^(CameraEvent* event)
-        {
-            [wself onEntrywayCameraEvent:event];
-        }];
-        
-        [[NRNestCameraFetcher shared] listenCameras];
-    }];
-    
-    
-    
+    //[self testStreaming];
+}
+
+- (IBAction)onStart:(id)sender 
+{
+    RootContainerVC* root = (RootContainerVC*)(self.parentViewController);
+    [root performSegueWithIdentifier:RootGameSegue.sid sender:self];
 }
 
 // Тестовые игровые хендлеры
 
-- (void) onEntrywayCameraEvent:(CameraEvent*)event
+- (void) testStreaming
+{
+    [[NRNestCameraFetcher shared] fetchCameras:
+     ^(BOOL success) 
+     {
+         if(success) NSLog(@"CAMERAS FETCHED");
+         // Это все игровой а не лобби код, здесь мы ждем пока все не проапдейтится показываем реди стеди го и вот го не показываем
+         // пока не получили данные по камерам, а как только получили запускаем лисн и добавляем хендлеры
+         
+         NSString* entry_cam_id = [NRNestCameraFetcher shared].cameraIDs[Bedroom_1_cam];
+         NRLobbyVC* __weak wself = self;
+         [[NRNestCameraFetcher shared] switchOnListenerForCameraID:entry_cam_id 
+                                                           handler:
+          ^(CameraEvent* event)
+          {
+              [wself onCameraEvent:event];
+          }];
+         
+         [[NRNestCameraFetcher shared] startCamerasObserving];
+     }];
+}
+
+- (void) onCameraEvent:(CameraEvent*)event
 {
     NSString* event_string = @"";
     if(event.type & cet_motion) event_string = [event_string stringByAppendingString:@"motion"];
     if(event.type & cet_sound) event_string = [event_string stringByAppendingString:@" sound"];
     if(event.type & cet_person) event_string = [event_string stringByAppendingString:@" person"];
     
-    NSLog(@"Entry way camera:");
+    NSLog(@"Camera event:");
     NSLog(@"--- type: %@",event_string);
     NSLog(@"--- started: %@",event.eventStart);
     NSLog(@"--- stopped: %@",event.eventStop);
 }
+
 
 
 

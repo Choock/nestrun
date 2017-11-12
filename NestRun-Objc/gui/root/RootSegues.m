@@ -55,6 +55,36 @@
 
 @end
 
+@implementation RootGameSegue
+
++ (NSString*) sid 
+{
+    return [RootGameSegue.class description];
+}
+
+- (void) perform
+{
+    RootContainerVC* root = (RootContainerVC*)self.sourceViewController;
+    ChSimpleRootContainerReplacementAnimation animation = rra_SlideUp;
+    
+    //    if     ([root.presentChildVC isKindOfClass:[GameFieldVC class]]) animation = rra_SlideDown;
+    //    else if([root.presentChildVC isKindOfClass:[GameStatsVC class]]) animation = rra_SlideDown;
+    //    else                                                             animation = rra_Dissolve;
+    
+    NSDictionary* a_descriptor = @{
+                                   RRA_ID       :@(animation),
+                                   RRA_OPTS     :@(UIViewAnimationOptionCurveLinear),
+                                   RRA_TIME     :@(0.3),
+                                   RRA_X_OVERRUN:@(0),
+                                   RRA_Y_OVERRUN:@(0)
+                                   };
+    
+    [root replacePresentVCwithVC:self.destinationViewController
+         withAnimationDescriptor:a_descriptor];
+}
+
+@end
+
 
 
 

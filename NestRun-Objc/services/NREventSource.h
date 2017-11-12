@@ -58,7 +58,7 @@ typedef void (^EventSourceEventHandler)(Event *event);
 // ---------------------------------------------------------------------------------------------------------------------
 
 /// Connect to and receive Server-Sent Events (SSEs).
-@interface EventSource : NSObject
+@interface NREventSource : NSObject
 
 /// Returns a new instance of EventSource with the specified URL.
 ///

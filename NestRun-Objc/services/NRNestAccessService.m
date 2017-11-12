@@ -279,28 +279,6 @@ typedef void (^APIPathRetrivedHandler)(BOOL);
                 handler(YES);
             });
         }
-        
-        
-        
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-                                                           options:kNilOptions
-                                                             error:&error];
-//        if(!json)                 
-//        {
-//          [self handleAccessError:@"invalide responce data" description:@""];
-//          handler(NO);
-//          return;
-//        }
-//        else if(json[@"error"] != nil) 
-//        {
-//          [self handleAccessError:json[@"error"] description:json[@"error_description"]];
-//          handler(NO);
-//          return;
-//        }
-//
-//        _cameras = json;
-//        [self validateCameraNames];
-//        handler(YES);
     }];
     [dataTask resume];
 }

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Dima Choock. All rights reserved.
 //
 
+#import "appmacros.h"
 #import <Foundation/Foundation.h>
 
 typedef enum
@@ -36,7 +37,7 @@ typedef void (^CameraEventHandler)(CameraEvent*);
 
     - (void) fetchCameras:(FetcherCompletionHandler)handler;
 
-    - (void) listenCameras;
+    - (void) startCamerasObserving;
     - (void) switchOnListenerForCameraID:(NSString*)cid handler:(CameraEventHandler)event;
     - (void) switchOffListenerForCameraID:(NSString*)cid;
 

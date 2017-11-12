@@ -23,8 +23,8 @@
 //  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "EventSource.h"
-//#import "NRNestAccessService.h"
+#import "NREventSource.h"
+#import "NRNestAccessService.h"
 #import <CoreGraphics/CGBase.h>
 
 static CGFloat const ES_RETRY_INTERVAL = 1.0;
@@ -41,7 +41,7 @@ static NSString *const ESEventIDKey = @"id";
 static NSString *const ESEventEventKey = @"event";
 static NSString *const ESEventRetryKey = @"retry";
 
-@interface EventSource () <NSURLSessionDataDelegate> {
+@interface NREventSource () <NSURLSessionDataDelegate> {
     BOOL wasClosed;
     dispatch_queue_t messageQueue;
     dispatch_queue_t connectionQueue;
@@ -59,16 +59,16 @@ static NSString *const ESEventRetryKey = @"retry";
 
 @end
 
-@implementation EventSource
+@implementation NREventSource
 
 + (instancetype)eventSourceWithURL:(NSURL *)URL
 {
-    return [[EventSource alloc] initWithURL:URL];
+    return [[NREventSource alloc] initWithURL:URL];
 }
 
 + (instancetype)eventSourceWithURL:(NSURL *)URL timeoutInterval:(NSTimeInterval)timeoutInterval
 {
-    return [[EventSource alloc] initWithURL:URL timeoutInterval:timeoutInterval];
+    return [[NREventSource alloc] initWithURL:URL timeoutInterval:timeoutInterval];
 }
 
 - (instancetype)initWithURL:(NSURL *)URL
@@ -253,7 +253,7 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
                                                        timeoutInterval:self.timeoutInterval];
     // TODO: move outside
     NSDictionary *headers = @{ @"accept": @"text/event-stream",
-                               @"authorization": @"Bearer c.TFmINLt7JgXfRIu9HrP306Xn4nhktF6GJ7FeqVbfGCXRZoeWXXiPJqGIjYR8t6EixCqhH7UmKZ5UHal3AVb3ZjZGaYHpK49iFVcUFFXUCTIGSlEpKfOZRBPaOKUZIgccRNAEQUmLJNGO4G55",
+                               @"authorization": [NRNestAccessService shared].accessToken.bearer,//  @"Bearer c.TFmINLt7JgXfRIu9HrP306Xn4nhktF6GJ7FeqVbfGCXRZoeWXXiPJqGIjYR8t6EixCqhH7UmKZ5UHal3AVb3ZjZGaYHpK49iFVcUFFXUCTIGSlEpKfOZRBPaOKUZIgccRNAEQUmLJNGO4G55",
                                @"content-type": @"application/json",
                                @"cache-control": @"no-cache"};
     

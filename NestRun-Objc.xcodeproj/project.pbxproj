@@ -12,7 +12,7 @@
 		E95B68B51FB07C0D008143E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B41FB07C0D008143E5 /* Assets.xcassets */; };
 		E95B68B81FB07C0D008143E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B61FB07C0D008143E5 /* LaunchScreen.storyboard */; };
 		E95B68BB1FB07C0D008143E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68BA1FB07C0D008143E5 /* main.m */; };
-		E95B68CA1FB07E42008143E5 /* EventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68C91FB07E42008143E5 /* EventSource.m */; };
+		E95B68CA1FB07E42008143E5 /* NREventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68C91FB07E42008143E5 /* NREventSource.m */; };
 		E95B68CD1FB08051008143E5 /* ChSimpleRootContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68CC1FB08051008143E5 /* ChSimpleRootContainerVC.m */; };
 		E95B68D31FB0825C008143E5 /* RootContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D01FB0825C008143E5 /* RootContainerVC.m */; };
 		E95B68D51FB082BA008143E5 /* RootSegues.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68D41FB082BA008143E5 /* RootSegues.m */; };
@@ -21,6 +21,10 @@
 		E95B68E01FB08E2B008143E5 /* NRNestAccessService.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */; };
 		E95B68E31FB0BD9E008143E5 /* NRNestCameraFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68E21FB0BD9E008143E5 /* NRNestCameraFetcher.m */; };
 		E961FCDC1FB60AD0009A8208 /* NRCommonExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E961FCDB1FB60AD0009A8208 /* NRCommonExtensions.m */; };
+		E961FCDF1FB756A5009A8208 /* game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E961FCDE1FB756A5009A8208 /* game.storyboard */; };
+		E961FCE31FB756EC009A8208 /* NRGameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E961FCE21FB756EC009A8208 /* NRGameVC.m */; };
+		E961FCE61FB76971009A8208 /* NRGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = E961FCE51FB76971009A8208 /* NRGameController.m */; };
+		E961FCE91FB76986009A8208 /* NRRunController.m in Sources */ = {isa = PBXBuildFile; fileRef = E961FCE81FB76986009A8208 /* NRRunController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,8 +36,8 @@
 		E95B68B71FB07C0D008143E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E95B68B91FB07C0D008143E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E95B68BA1FB07C0D008143E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E95B68C81FB07E42008143E5 /* EventSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventSource.h; sourceTree = "<group>"; };
-		E95B68C91FB07E42008143E5 /* EventSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventSource.m; sourceTree = "<group>"; };
+		E95B68C81FB07E42008143E5 /* NREventSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NREventSource.h; sourceTree = "<group>"; };
+		E95B68C91FB07E42008143E5 /* NREventSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NREventSource.m; sourceTree = "<group>"; };
 		E95B68CB1FB08050008143E5 /* ChSimpleRootContainerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChSimpleRootContainerVC.h; sourceTree = "<group>"; };
 		E95B68CC1FB08051008143E5 /* ChSimpleRootContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChSimpleRootContainerVC.m; sourceTree = "<group>"; };
 		E95B68D01FB0825C008143E5 /* RootContainerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootContainerVC.m; sourceTree = "<group>"; };
@@ -51,6 +55,14 @@
 		E95B68E21FB0BD9E008143E5 /* NRNestCameraFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRNestCameraFetcher.m; sourceTree = "<group>"; };
 		E961FCDA1FB60AD0009A8208 /* NRCommonExtensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRCommonExtensions.h; sourceTree = "<group>"; };
 		E961FCDB1FB60AD0009A8208 /* NRCommonExtensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRCommonExtensions.m; sourceTree = "<group>"; };
+		E961FCDE1FB756A5009A8208 /* game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = game.storyboard; sourceTree = "<group>"; };
+		E961FCE11FB756EC009A8208 /* NRGameVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRGameVC.h; sourceTree = "<group>"; };
+		E961FCE21FB756EC009A8208 /* NRGameVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRGameVC.m; sourceTree = "<group>"; };
+		E961FCE41FB76971009A8208 /* NRGameController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRGameController.h; sourceTree = "<group>"; };
+		E961FCE51FB76971009A8208 /* NRGameController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRGameController.m; sourceTree = "<group>"; };
+		E961FCE71FB76986009A8208 /* NRRunController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRRunController.h; sourceTree = "<group>"; };
+		E961FCE81FB76986009A8208 /* NRRunController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRRunController.m; sourceTree = "<group>"; };
+		E961FCEA1FB772E4009A8208 /* NRModelNames.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRModelNames.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				E95B68B11FB07C0D008143E5 /* Main.storyboard */,
+				E961FCDE1FB756A5009A8208 /* game.storyboard */,
 				E95B68B41FB07C0D008143E5 /* Assets.xcassets */,
 				E95B68B61FB07C0D008143E5 /* LaunchScreen.storyboard */,
 			);
@@ -121,6 +134,7 @@
 				E95B68CE1FB08054008143E5 /* basic */,
 				E95B68CF1FB08065008143E5 /* root */,
 				E95B68D71FB08C58008143E5 /* shell */,
+				E961FCE01FB756B5009A8208 /* game */,
 			);
 			path = gui;
 			sourceTree = "<group>";
@@ -128,6 +142,10 @@
 		E95B68C41FB07CB2008143E5 /* logic */ = {
 			isa = PBXGroup;
 			children = (
+				E961FCE41FB76971009A8208 /* NRGameController.h */,
+				E961FCE51FB76971009A8208 /* NRGameController.m */,
+				E961FCE71FB76986009A8208 /* NRRunController.h */,
+				E961FCE81FB76986009A8208 /* NRRunController.m */,
 			);
 			path = logic;
 			sourceTree = "<group>";
@@ -135,6 +153,8 @@
 		E95B68C51FB07CBA008143E5 /* services */ = {
 			isa = PBXGroup;
 			children = (
+				E95B68C81FB07E42008143E5 /* NREventSource.h */,
+				E95B68C91FB07E42008143E5 /* NREventSource.m */,
 				E95B68DE1FB08E2B008143E5 /* NRNestAccessService.h */,
 				E95B68DF1FB08E2B008143E5 /* NRNestAccessService.m */,
 				E95B68E11FB0BD9E008143E5 /* NRNestCameraFetcher.h */,
@@ -146,6 +166,7 @@
 		E95B68C61FB07CC5008143E5 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				E961FCEA1FB772E4009A8208 /* NRModelNames.h */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -154,8 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				E95B68D61FB083FA008143E5 /* appmacros.h */,
-				E95B68C81FB07E42008143E5 /* EventSource.h */,
-				E95B68C91FB07E42008143E5 /* EventSource.m */,
 				E961FCDA1FB60AD0009A8208 /* NRCommonExtensions.h */,
 				E961FCDB1FB60AD0009A8208 /* NRCommonExtensions.m */,
 			);
@@ -191,6 +210,15 @@
 				E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */,
 			);
 			path = shell;
+			sourceTree = "<group>";
+		};
+		E961FCE01FB756B5009A8208 /* game */ = {
+			isa = PBXGroup;
+			children = (
+				E961FCE11FB756EC009A8208 /* NRGameVC.h */,
+				E961FCE21FB756EC009A8208 /* NRGameVC.m */,
+			);
+			path = game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +279,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E961FCDF1FB756A5009A8208 /* game.storyboard in Resources */,
 				E95B68B81FB07C0D008143E5 /* LaunchScreen.storyboard in Resources */,
 				E95B68B51FB07C0D008143E5 /* Assets.xcassets in Resources */,
 				E95B68B31FB07C0D008143E5 /* Main.storyboard in Resources */,
@@ -269,10 +298,13 @@
 				E95B68CD1FB08051008143E5 /* ChSimpleRootContainerVC.m in Sources */,
 				E95B68D31FB0825C008143E5 /* RootContainerVC.m in Sources */,
 				E95B68BB1FB07C0D008143E5 /* main.m in Sources */,
+				E961FCE91FB76986009A8208 /* NRRunController.m in Sources */,
 				E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */,
 				E961FCDC1FB60AD0009A8208 /* NRCommonExtensions.m in Sources */,
 				E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */,
-				E95B68CA1FB07E42008143E5 /* EventSource.m in Sources */,
+				E961FCE31FB756EC009A8208 /* NRGameVC.m in Sources */,
+				E95B68CA1FB07E42008143E5 /* NREventSource.m in Sources */,
+				E961FCE61FB76971009A8208 /* NRGameController.m in Sources */,
 				E95B68E31FB0BD9E008143E5 /* NRNestCameraFetcher.m in Sources */,
 				E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */,
 			);
