@@ -11,7 +11,7 @@
 @protocol NRGameDisplay
 
     - (void) attachCameras:(NSDictionary*)cameraNames;
-    - (void) gameStarted;
+    - (void) gameStartedWithInitialScore:(int)score lives:(int)lives;
 
     - (void) setRunTarget:(NSString*)cameraID runTime:(int)rsec waitTime:(int)wsec score:(int)score;
     - (void) setRedZones:(NSSet<NSString*>*)cameraIDs score:(int)score;
@@ -21,6 +21,7 @@
     - (void) secondsToWait:(int)seconds;
 
     - (void) targetReached;
+    - (void) runOver;
     - (void) redZoneTouched:(NSString*)cameraID;
 
     - (void) runScore:(int)runScore gameScore:(int)gameScore livesLeft:(int)lives;
@@ -33,5 +34,6 @@
     @property(nonatomic,strong) id<NRGameDisplay> display;
 
     - (void) startGame;
+    - (void) startSimGame:(NSString*)ename;
 
 @end

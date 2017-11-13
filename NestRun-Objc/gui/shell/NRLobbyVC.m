@@ -38,8 +38,6 @@
      ^(BOOL success) 
      {
          if(success) NSLog(@"CAMERAS FETCHED");
-         // Это все игровой а не лобби код, здесь мы ждем пока все не проапдейтится показываем реди стеди го и вот го не показываем
-         // пока не получили данные по камерам, а как только получили запускаем лисн и добавляем хендлеры
          
          NSString* entry_cam_id = [NRNestCameraFetcher shared].cameraIDs[Bedroom_1_cam];
          NRLobbyVC* __weak wself = self;

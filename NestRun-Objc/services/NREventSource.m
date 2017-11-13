@@ -25,6 +25,7 @@
 
 #import "NREventSource.h"
 #import "NRNestAccessService.h"
+#import "NRCommonExtensions.h"
 #import <CoreGraphics/CGBase.h>
 
 static CGFloat const ES_RETRY_INTERVAL = 1.0;
@@ -284,8 +285,10 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
 - (void)_dispatchEvent:(Event *)event type:(NSString * const)type
 {
     NSArray *errorHandlers = self.listeners[type];
-    for (EventSourceEventHandler handler in errorHandlers) {
-        dispatch_async(connectionQueue, ^{
+    for (EventSourceEventHandler handler in errorHandlers) 
+    {
+        dispatch_async(connectionQueue, 
+        ^{
             handler(event);
         });
     }
@@ -300,7 +303,55 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
     }
 }
 
+#pragma mark - EVENT SOURCE SIMULATOR
+
++ (instancetype)eventSourceWithEventListener:(NSString*)eventName
+{
+    return [[NREventSource alloc] initWithSimulatedEventName:eventName];
+}
+
+- (instancetype)initWithSimulatedEventName:(NSString*)eventName
+{
+    self = [super init];
+    if (self) 
+    {
+        _listeners = [NSMutableDictionary dictionary];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onSimulatedEvent:) name:eventName object:nil];
+    }
+    return self;
+}
+
+- (void) onSimulatedEvent:(NSNotification*)notification
+{
+    NSString* cam_id     = notification.userInfo[@"cid"];
+    NSString* event_type = notification.userInfo[@"type"];
+    if(cam_id == nil) return;
+    if(event_type == nil) event_type = @"motion";
+    
+    Event* simulated_event  = [self buildSSEventWith:cam_id type:event_type];
+    NSArray *errorHandlers = self.listeners[@"put"];
+    for (EventSourceEventHandler handler in errorHandlers) 
+    {
+        handler(simulated_event);
+    }
+}
+
+- (Event*) buildSSEventWith:(NSString*)cameraID type:(NSString*)type
+{
+    // Type is ignored so far, it's always "motion and person" event
+    NSString* data_format_string = @"{\"path\":\"/devices/cameras\",\"data\":{\"%@\":{\"last_event\":{\"has_sound\":false,\"has_motion\":true,\"has_person\":true,\"start_time\":\"%@\",\"end_time\":\"%@\"}}}}";
+    NSString* date_string = [NSDate getDateStringFromDate:[NSDate date]];
+    NSString* data_string = [NSString stringWithFormat:data_format_string, cameraID, date_string, date_string];
+    
+    Event* simulated_event = [[Event alloc] init];
+    simulated_event.event = @"put";
+    simulated_event.data  = data_string;
+    return simulated_event;
+}
+
 @end
+
+
 
 // ---------------------------------------------------------------------------------------------------------------------
 

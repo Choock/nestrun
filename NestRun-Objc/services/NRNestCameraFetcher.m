@@ -44,6 +44,7 @@
 
 @implementation NRNestCameraFetcher
 {
+    NREventSource* sseSource;
     NSDictionary* _cameras;   // full json
     NSDictionary* _cameraIDs; // {name:id}
     
@@ -103,30 +104,39 @@
 
 #pragma mark - CONTROL INTERFACE
 
-- (void) startCamerasObserving
+- (void) startSimulatedCamerasObserving:(NSString*)eventName
 {
-    NREventSource *source = [NREventSource eventSourceWithURL:[NRNestAccessService shared].camerasURL];
-    
-    // DATA UPDATED
-    [source addEventListener:@"put" handler:^(Event *e) 
-    {
-        NSData* json_data = [e.data dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:json_data
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-        NSDictionary* events_data = json[@"data"];
-        if(events_data!=nil)
-        {
-            [self updateCameraEventListenersWith:events_data];
-        }
-    }];
-    
-    // ALL EVENTS: very messy, do not uncomment
-//    [source onMessage:^(Event *e) {
-//        NSLog(@"%@: %@", e.event, e.data);
-//    }];
+    sseSource = [NREventSource eventSourceWithEventListener:eventName];
+    [self addCameraEventListener];
 }
 
+- (void) startCamerasObserving
+{
+    sseSource = [NREventSource eventSourceWithURL:[NRNestAccessService shared].camerasURL];
+    [self addCameraEventListener];
+}
+
+- (void) addCameraEventListener
+{
+    NRNestCameraFetcher* __weak wself = self;
+    [sseSource addEventListener:@"put" handler:^(Event *e) 
+     {
+         NSData* json_data = [e.data dataUsingEncoding:NSUTF8StringEncoding];
+         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:json_data
+                                                              options:NSJSONReadingMutableContainers
+                                                                error:nil];
+         NSDictionary* events_data = json[@"data"];
+         if(events_data!=nil)
+         {
+             [wself updateCameraEventListenersWith:events_data];
+         }
+     }];
+    
+    // ALL EVENTS: very messy, do not uncomment
+    //    [source onMessage:^(Event *e) {
+    //        NSLog(@"%@: %@", e.event, e.data);
+    //    }];
+}
 - (void) fetchCameras:(FetcherCompletionHandler)handler
 {
     NSURLSession *session = [NSURLSession sharedSession];

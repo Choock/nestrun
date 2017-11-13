@@ -45,7 +45,7 @@
         {
             [wself handleRedZoneCameraEvent:event cameraID:red_id];
         };
-        [[NRNestCameraFetcher shared] switchOnListenerForCameraID:_targetID handler:red_handler];
+        [[NRNestCameraFetcher shared] switchOnListenerForCameraID:red_id handler:red_handler];
     }
 }
 - (void) cancel

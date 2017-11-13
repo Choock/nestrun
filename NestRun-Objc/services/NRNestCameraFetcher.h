@@ -30,14 +30,15 @@ typedef void (^CameraEventHandler)(CameraEvent*);
 
 @interface NRNestCameraFetcher : NSObject
 
-    @property(readonly) NSDictionary* cameraIDs;
-    @property(readonly) NSArray*      cameraNames;
+    @property(readonly) NSDictionary<NSString*, NSString*>* cameraIDs;
+    @property(readonly) NSArray<NSString*>*                 cameraNames;
 
     + (instancetype) shared;   
 
     - (void) fetchCameras:(FetcherCompletionHandler)handler;
 
     - (void) startCamerasObserving;
+    - (void) startSimulatedCamerasObserving:(NSString*)eventName;
     - (void) switchOnListenerForCameraID:(NSString*)cid handler:(CameraEventHandler)event;
     - (void) switchOffListenerForCameraID:(NSString*)cid;
 

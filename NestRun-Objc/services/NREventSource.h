@@ -108,6 +108,9 @@ typedef void (^EventSourceEventHandler)(Event *event);
 /// Closes the connection to the EventSource.
 - (void)close;
 
+/// Event simulator interface
++ (instancetype)eventSourceWithEventListener:(NSString*)eventName;
+
 @end
 
 // ---------------------------------------------------------------------------------------------------------------------
