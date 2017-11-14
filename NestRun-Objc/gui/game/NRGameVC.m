@@ -10,10 +10,23 @@
 #import "NRModelNames.h"
 #import "NRGameVC.h"
 #import "NRGameController.h"
+#import "NRTargetSpotView.h"
+#import "NRRedZoneView.h"
+#import "RootContainerVC.h"
+#import "RootSegues.h"
 
 @interface NRGameVC () <NRGameDisplay>
 
     @property (weak, nonatomic) IBOutlet UIView *allSpotsContainer;
+    @property (weak, nonatomic) IBOutlet UILabel *gameScoreLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *livesLeftLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *livesTitleLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *runTimeLabel;
+
+    @property (weak, nonatomic) IBOutlet UIView *topbarContainer;
+    @property (weak, nonatomic) IBOutlet UIView *fieldContainer;
+    @property (weak, nonatomic) IBOutlet UIView *botbarContainer;
+    @property (weak, nonatomic) IBOutlet UIButton *leaveButton;
 
 @end
 
@@ -21,8 +34,8 @@
 {
     NRGameController* _gameController;
     
-    NSMutableDictionary<NSString*,UIView*>* _cameraSpotView;
-    NSMutableDictionary<NSString*,UIView*>* _cameraRedZoneView;
+    NSMutableDictionary<NSString*,NRTargetSpotView*>* _cameraSpotView;
+    NSMutableDictionary<NSString*,NRRedZoneView*>* _cameraRedZoneView;
     
     NSSet<NSString*>* _currentReds;
     NSString* _currentTarget;
@@ -35,18 +48,25 @@
 {
     _currentTarget = cameraID;
     _cameraSpotView[_currentTarget].hidden = NO;
-    _cameraSpotView[_currentTarget].backgroundColor = [UIColor blueColor];
+    _cameraSpotView[_currentTarget].isOrigin = NO;
+    _cameraSpotView[_currentTarget].score = score;
+    self.runTimeLabel.text = [NSString stringWithFormat:@":%02d", rsec];
 }
 - (void) setRedZones:(NSSet<NSString*>*)cameraIDs score:(int)score
 {
     for (NSString* red in _currentReds) {_cameraRedZoneView[red].hidden = YES;}
     _currentReds = cameraIDs;
-    for (NSString* red in _currentReds) {_cameraRedZoneView[red].hidden = NO;}
+    for (NSString* red in _currentReds) 
+    {
+        _cameraRedZoneView[red].hidden = NO;
+        _cameraRedZoneView[red].score = -10;
+    }
 }
 
 - (void) gameStartedWithInitialScore:(int)score lives:(int)lives
 {
-    
+    self.gameScoreLabel.text = [NSString stringWithFormat:@"%d",score];
+    self.livesLeftLabel.text = [NSString stringWithFormat:@"%d",lives];
 }
 
 - (void) secondsToStart:(int)seconds
@@ -55,7 +75,7 @@
 }
 - (void) secondsToRun:(int)seconds
 {
-    
+    self.runTimeLabel.text = [NSString stringWithFormat:@":%02d", seconds];
 }
 - (void) secondsToWait:(int)seconds
 {
@@ -64,16 +84,18 @@
 
 - (void) targetReached
 {
-
+    [_cameraSpotView[_currentTarget] reached];
 }
 - (void) redZoneTouched:(NSString*)cameraID
 {
-    
+    [_cameraRedZoneView[cameraID] touched];
 }
 
 - (void) runScore:(int)runScore gameScore:(int)gameScore livesLeft:(int)lives
 {
-    
+    _cameraSpotView[_currentTarget].score = runScore;
+    self.gameScoreLabel.text = [NSString stringWithFormat:@"%d",gameScore];
+    self.livesLeftLabel.text = [NSString stringWithFormat:@"%d",lives];
 }
 
 - (void) runOver
@@ -82,14 +104,15 @@
 }
 - (void) gameOver
 {
-    
+    self.livesLeftLabel.hidden = YES;
+    self.livesTitleLabel.text = @"GAME OVER";
 }
 
 - (void) moveOrigin
 {
     _cameraSpotView[_currentOrigin].hidden = YES;
     _currentOrigin = _currentTarget;
-    _cameraSpotView[_currentOrigin].backgroundColor = [UIColor greenColor];
+    _cameraSpotView[_currentOrigin].isOrigin = YES;
 }
 
 /// Temp test implementation: manual attaching cameras to spots
@@ -115,15 +138,18 @@
          
          if(EQS(cam_name,Teracce_1_cam)){_cameraSpotView[cam_id] = [self.allSpotsContainer viewWithTag:111];_cameraRedZoneView[cam_id] = [self.allSpotsContainer viewWithTag:11];}
          if(EQS(cam_name,Teracce_2_cam)){_cameraSpotView[cam_id] = [self.allSpotsContainer viewWithTag:112];_cameraRedZoneView[cam_id] = [self.allSpotsContainer viewWithTag:12];}
+         
+         if(EQS(cam_name,Initial_cam)){_cameraSpotView[cam_id] = [self.allSpotsContainer viewWithTag:108];_cameraRedZoneView[cam_id] = [self.allSpotsContainer viewWithTag:8];}
      
          _cameraSpotView[cam_id].hidden = YES;
          _cameraRedZoneView[cam_id].hidden = YES;
+         
      }];
     
     self.allSpotsContainer.hidden = NO;
-    _currentOrigin = cameraNames[Entryway_cam];
+    _currentOrigin = cameraNames[Initial_cam];
     _cameraSpotView[_currentOrigin].hidden = NO;
-    _cameraSpotView[_currentOrigin].backgroundColor = [UIColor greenColor];
+    _cameraSpotView[_currentOrigin].isOrigin = YES;
 }
 
 #pragma mark - ROUTINES
@@ -147,15 +173,31 @@
     _gameController = [[NRGameController alloc] init];
     _gameController.display = self;
     [self prepareToStartGame];
-    //[_gameController startGame];
-    [_gameController startSimGame:@"put"];
+    [_gameController startGame];
 }
 - (void) setupView
 {
     self.allSpotsContainer.hidden = YES;
+    CALayer* field_layer = self.fieldContainer.layer;
+    field_layer.shadowColor = [[UIColor blackColor] CGColor];
+    field_layer.shadowOpacity = 1;
+    field_layer.shadowRadius = 18;
+    field_layer.shadowOffset = CGSizeMake(0, 8);
+    
+    self.topbarContainer.backgroundColor = [UIColor colorNamed:@"darkBack"];
+    self.botbarContainer.backgroundColor = [UIColor colorNamed:@"darkBack"]; 
+    
+    self.gameScoreLabel.textColor = [UIColor colorNamed:@"whiteText"];
+    self.livesLeftLabel.textColor = [UIColor colorNamed:@"whiteText"];
+    self.runTimeLabel.textColor   = [UIColor colorNamed:@"whiteText"];
+    
+    CALayer* button_layer = self.leaveButton.layer;
+    button_layer.cornerRadius = 15;
+    button_layer.borderWidth = 1;
+    button_layer.borderColor = [[UIColor colorNamed:@"whiteText"] CGColor];
 }
 
-#pragma mark - RECOGNISERS
+#pragma mark - HANDLERS
 
 - (IBAction)onTap:(UITapGestureRecognizer *)sender 
 {
@@ -181,6 +223,17 @@
 - (void) sendSimEventFor:(NSString*)cid
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"put" object:nil userInfo:@{@"cid":cid}];
+}
+
+- (IBAction)onLeaveGame:(id)sender 
+{
+    [_gameController stopGame];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), 
+    ^{
+        RootContainerVC* root = (RootContainerVC*)(self.parentViewController);
+        [root performSegueWithIdentifier:RootLobbySegue.sid sender:self];
+    });
 }
 
 

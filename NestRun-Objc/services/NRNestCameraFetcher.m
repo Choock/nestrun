@@ -184,28 +184,46 @@
     [data enumerateKeysAndObjectsUsingBlock:
      ^(NSString* _Nonnull cid, NSDictionary* _Nonnull event, BOOL* _Nonnull stop) 
     {
+        NSLog(@"NestCameraFetches: event received");
         CameraEventHandler handler = _cameraEventListeners[cid];
-        if(handler == nil) return;
+        if(handler == nil)
+        {
+            NSLog(@"NestCameraFetches: event not handled - no handler registersd for the cam id: %@",cid);
+            return;
+        }
         
         NSDictionary* cam_event_dict = event[@"last_event"];
         if(cam_event_dict == nil) return;
         
         NSString* event_start_string = cam_event_dict[@"start_time"];
         NSString* event_stop_string = cam_event_dict[@"end_time"];
-        if(EMPTY(event_start_string) || EMPTY(event_stop_string)) return;
+        if(EMPTY(event_start_string) || EMPTY(event_stop_string))
+        {
+            NSLog(@"NestCameraFetches: event not handled - event start or stop date or both are empty");
+            return;
+        };
+        
         NSDate* event_start = [NSDate getDateFromDateString: event_start_string];
         NSDate* event_stop  = [NSDate getDateFromDateString: event_stop_string];
         NSDate* last_start  = self.cameraEventStarts[cid];
         NSDate* last_stop   = self.cameraEventStops[cid];
         NSDate* register_date = self.cameraRegisterDates[cid];
         
-        BOOL startstopped_earlier    = ([event_start compare:register_date] == NSOrderedAscending) && ([event_stop compare:register_date] == NSOrderedAscending);
-        if(startstopped_earlier) return;
+        BOOL startstopped_earlier = ([event_start compare:register_date] == NSOrderedAscending) && ([event_stop compare:register_date] == NSOrderedAscending);
+        if(startstopped_earlier)
+        {
+            NSLog(@"NestCameraFetches: event not handled - event earlier than handler registered");
+            return;
+        };
         
         BOOL stop_earlier_than_start = [event_start compare:event_stop] == NSOrderedDescending;
         BOOL start_not_changed       = [event_start compare:last_start] == NSOrderedSame;
         BOOL stop_not_changed        = [event_stop compare:last_stop] == NSOrderedSame;
-        if(start_not_changed && (stop_not_changed || stop_earlier_than_start)) return;
+        if(start_not_changed && (stop_not_changed || stop_earlier_than_start))
+        {
+            NSLog(@"NestCameraFetches: event not handled - duplicate event or stoped earlier than started");
+            return;
+        };
         
         self.cameraEventStarts[cid] = event_start;
         self.cameraEventStops[cid]  = event_stop;
@@ -217,6 +235,7 @@
                                                           person:((NSNumber*)cam_event_dict[@"has_person"]).boolValue];
         
         handler(cam_event);
+        NSLog(@"NestCameraFetches: event handled and sent to camera observer");
     }];
 }
 

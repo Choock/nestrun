@@ -34,6 +34,7 @@
     @property(nonatomic,strong) id<NRGameDisplay> display;
 
     - (void) startGame;
+    - (void) stopGame;
     - (void) startSimGame:(NSString*)ename;
 
 @end

@@ -11,6 +11,7 @@
 
 
 /// Temp test implementation: camera name constants
+
 // Sim supports up to 8 cams 
 NAME_VALUE(Bedroom_1_cam, Bedroom (1))
 NAME_VALUE(Bedroom_2_cam, Basement (2))
@@ -26,3 +27,6 @@ NAME_VALUE(Entryway_cam, Entryway (8))
 NAME_VALUE(Lobby_cam, Lobby (7))
 NAME_VALUE(Teracce_1_cam, Teracce (11))
 NAME_VALUE(Teracce_2_cam, Teracce (12))
+
+// Special (prototype required) cam
+NAME_VALUE(Initial_cam, Initial)

@@ -6,9 +6,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Medium</string>
+        </array>
+        <array key="Optima.ttc">
+            <string>Optima-Bold</string>
+            <string>Optima-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--GameVC-->
         <scene sceneID="vBq-Oq-S8z">
@@ -20,23 +30,83 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMK-ql-tw6" userLabel="top container">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="game score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ry2-6R-y2K">
+                                        <rect key="frame" x="24" y="27.5" width="94.5" height="25"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <color key="textColor" name="whiteText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lives left" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfQ-wJ-mqb">
+                                        <rect key="frame" x="283" y="27.5" width="68" height="25"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <color key="textColor" name="whiteText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ktp-Qg-31p">
+                                        <rect key="frame" x="126.5" y="40" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7c-QK-JKg">
+                                        <rect key="frame" x="275" y="40" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="darkBack"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BfQ-wJ-mqb" secondAttribute="trailing" constant="24" id="1VD-yk-OgU"/>
+                                    <constraint firstItem="ry2-6R-y2K" firstAttribute="centerY" secondItem="EMK-ql-tw6" secondAttribute="centerY" id="3xK-yc-B5X"/>
+                                    <constraint firstItem="Ktp-Qg-31p" firstAttribute="centerY" secondItem="ry2-6R-y2K" secondAttribute="centerY" id="AEZ-AK-suC"/>
                                     <constraint firstAttribute="height" constant="80" id="H80-dS-usy"/>
+                                    <constraint firstItem="BfQ-wJ-mqb" firstAttribute="leading" secondItem="c7c-QK-JKg" secondAttribute="trailing" constant="8" id="ILF-cs-vbw"/>
+                                    <constraint firstItem="c7c-QK-JKg" firstAttribute="centerY" secondItem="BfQ-wJ-mqb" secondAttribute="centerY" id="bBa-c1-eq4"/>
+                                    <constraint firstItem="Ktp-Qg-31p" firstAttribute="leading" secondItem="ry2-6R-y2K" secondAttribute="trailing" constant="8" id="c54-aJ-7ib"/>
+                                    <constraint firstItem="BfQ-wJ-mqb" firstAttribute="centerY" secondItem="EMK-ql-tw6" secondAttribute="centerY" id="cJa-gC-94e"/>
+                                    <constraint firstItem="ry2-6R-y2K" firstAttribute="leading" secondItem="EMK-ql-tw6" secondAttribute="leading" constant="24" id="e3W-pv-Rla"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bA0-9v-IaQ" userLabel="bot container">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11V-Tp-yfU">
+                                        <rect key="frame" x="188" y="40" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFI-Sb-vu3">
+                                        <rect key="frame" x="261" y="25" width="90" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="HZi-c2-MnQ"/>
+                                            <constraint firstAttribute="width" constant="90" id="MoN-dP-6sw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <state key="normal" title="leave">
+                                            <color key="titleColor" name="whiteText"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onLeaveGame:" destination="udK-7Z-s1t" eventType="touchUpInside" id="y2L-Z4-2kO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="darkBack"/>
                                 <constraints>
+                                    <constraint firstItem="GFI-Sb-vu3" firstAttribute="centerY" secondItem="bA0-9v-IaQ" secondAttribute="centerY" id="FCw-FZ-Q4S"/>
+                                    <constraint firstItem="11V-Tp-yfU" firstAttribute="centerX" secondItem="bA0-9v-IaQ" secondAttribute="centerX" id="Haq-5D-tI7"/>
+                                    <constraint firstItem="11V-Tp-yfU" firstAttribute="centerY" secondItem="bA0-9v-IaQ" secondAttribute="centerY" id="TEP-2s-rym"/>
                                     <constraint firstAttribute="height" constant="80" id="kwM-gd-oH2"/>
+                                    <constraint firstAttribute="trailing" secondItem="GFI-Sb-vu3" secondAttribute="trailing" constant="24" id="urv-Qk-W1Q"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rXj-HX-dqr" userLabel="field">
-                                <rect key="frame" x="0.0" y="88" width="375" height="491"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="507"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7V-lS-ZUD" userLabel="back">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="491"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="floorplan" translatesAutoresizingMaskIntoConstraints="NO" id="KDJ-I7-rOL" userLabel="plan back">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
@@ -51,214 +121,646 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FkB-tW-zGI" userLabel="spots">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="491"/>
+                                        <rect key="frame" x="0.0" y="8" width="375" height="491"/>
                                         <subviews>
-                                            <view hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoz-c5-Kb0" userLabel="bedroom-1">
+                                            <view hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoz-c5-Kb0" userLabel="bedroom-1" customClass="NRRedZoneView">
                                                 <rect key="frame" x="82" y="23" width="82" height="77"/>
-                                                <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lef-vt-6dm">
+                                                        <rect key="frame" x="0.0" y="0.0" width="82" height="77"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGS-LQ-m13" userLabel="zone fee">
+                                                        <rect key="frame" x="20" y="28" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="lef-vt-6dm" firstAttribute="leading" secondItem="hoz-c5-Kb0" secondAttribute="leading" id="3dH-by-QSj"/>
+                                                    <constraint firstItem="lef-vt-6dm" firstAttribute="top" secondItem="hoz-c5-Kb0" secondAttribute="top" id="Sge-Pb-ciF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="lef-vt-6dm" secondAttribute="trailing" id="TlU-4E-tvs"/>
+                                                    <constraint firstItem="OGS-LQ-m13" firstAttribute="centerX" secondItem="hoz-c5-Kb0" secondAttribute="centerX" id="c8a-jP-IMh"/>
+                                                    <constraint firstItem="OGS-LQ-m13" firstAttribute="centerY" secondItem="hoz-c5-Kb0" secondAttribute="centerY" id="qkf-GW-HUR"/>
+                                                    <constraint firstAttribute="bottom" secondItem="lef-vt-6dm" secondAttribute="bottom" id="slD-TC-fCu"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="xqQ-FO-eHM" appends="YES" id="i3b-cc-Agk"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsV-7G-2XM" userLabel="bedroomspot-1">
+                                            <view hidden="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GsV-7G-2XM" userLabel="bedroomspot-1" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="102" y="30" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nPe-Bx-Xyt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1A-p2-N0V" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="3qa-hq-WHp"/>
+                                                    <constraint firstItem="M1A-p2-N0V" firstAttribute="centerX" secondItem="GsV-7G-2XM" secondAttribute="centerX" id="A7H-aQ-1ZO"/>
+                                                    <constraint firstAttribute="bottom" secondItem="nPe-Bx-Xyt" secondAttribute="bottom" id="EzI-AN-FwX"/>
                                                     <constraint firstAttribute="width" constant="40" id="Hqn-Sz-P77"/>
+                                                    <constraint firstAttribute="trailing" secondItem="nPe-Bx-Xyt" secondAttribute="trailing" id="PTe-yK-34c"/>
+                                                    <constraint firstItem="nPe-Bx-Xyt" firstAttribute="leading" secondItem="GsV-7G-2XM" secondAttribute="leading" id="l5C-qJ-Wff"/>
+                                                    <constraint firstItem="M1A-p2-N0V" firstAttribute="centerY" secondItem="GsV-7G-2XM" secondAttribute="centerY" id="quZ-1E-Zrx"/>
+                                                    <constraint firstItem="nPe-Bx-Xyt" firstAttribute="top" secondItem="GsV-7G-2XM" secondAttribute="top" id="x3Z-6Y-UVy"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="MKd-lE-jr6" appends="YES" id="Uav-l2-BCP"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-vr-sj1" userLabel="bedroom-2">
+                                            <view hidden="YES" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-vr-sj1" userLabel="bedroom-2" customClass="NRRedZoneView">
                                                 <rect key="frame" x="82" y="181" width="85" height="79"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dZf-tH-jof">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="79"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdC-HO-Sfs" userLabel="zone fee">
+                                                        <rect key="frame" x="21" y="29" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="dZf-tH-jof" secondAttribute="trailing" id="73K-aB-RRP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dZf-tH-jof" secondAttribute="bottom" id="C32-SN-67o"/>
+                                                    <constraint firstItem="vdC-HO-Sfs" firstAttribute="centerY" secondItem="sqa-vr-sj1" secondAttribute="centerY" id="DPa-Ve-RsJ"/>
+                                                    <constraint firstItem="dZf-tH-jof" firstAttribute="top" secondItem="sqa-vr-sj1" secondAttribute="top" id="NJ7-Bx-zdl"/>
+                                                    <constraint firstItem="vdC-HO-Sfs" firstAttribute="centerX" secondItem="sqa-vr-sj1" secondAttribute="centerX" id="RBf-gJ-YZY"/>
+                                                    <constraint firstItem="dZf-tH-jof" firstAttribute="leading" secondItem="sqa-vr-sj1" secondAttribute="leading" id="lno-k2-n4i"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="r5x-qc-iFh" appends="YES" id="eZq-q6-ejt"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-Na-L4Z" userLabel="bedroomspot-2">
+                                            <view hidden="YES" tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WpW-Na-L4Z" userLabel="bedroomspot-2" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="102" y="210" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Ac-El-h3Z">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJo-iU-z1A" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="7fO-1q-o2x"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0Ac-El-h3Z" secondAttribute="bottom" id="OLu-SY-1yr"/>
+                                                    <constraint firstItem="0Ac-El-h3Z" firstAttribute="leading" secondItem="WpW-Na-L4Z" secondAttribute="leading" id="RJc-tb-ofc"/>
+                                                    <constraint firstItem="ZJo-iU-z1A" firstAttribute="centerX" secondItem="WpW-Na-L4Z" secondAttribute="centerX" id="VFk-7e-pjT"/>
+                                                    <constraint firstItem="0Ac-El-h3Z" firstAttribute="top" secondItem="WpW-Na-L4Z" secondAttribute="top" id="kPC-mI-3Qp"/>
+                                                    <constraint firstItem="ZJo-iU-z1A" firstAttribute="centerY" secondItem="WpW-Na-L4Z" secondAttribute="centerY" id="lL3-j4-BXD"/>
                                                     <constraint firstAttribute="height" constant="40" id="q8U-2h-wxV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0Ac-El-h3Z" secondAttribute="trailing" id="w9B-1j-kih"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="NUX-0p-bUI" appends="YES" id="K41-P6-DcJ"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIY-T8-y9t" userLabel="bedroom-3">
+                                            <view hidden="YES" tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIY-T8-y9t" userLabel="bedroom-3" customClass="NRRedZoneView">
                                                 <rect key="frame" x="102" y="355" width="52" height="38"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ro-W3-mMe">
+                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="38"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLD-Ju-h9Z" userLabel="zone fee">
+                                                        <rect key="frame" x="5" y="8" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="9Ro-W3-mMe" firstAttribute="top" secondItem="LIY-T8-y9t" secondAttribute="top" id="0h5-Ph-FeT"/>
+                                                    <constraint firstItem="XLD-Ju-h9Z" firstAttribute="centerY" secondItem="LIY-T8-y9t" secondAttribute="centerY" id="5Dd-SF-VRI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9Ro-W3-mMe" secondAttribute="trailing" id="MC1-Y7-tVI"/>
+                                                    <constraint firstItem="9Ro-W3-mMe" firstAttribute="leading" secondItem="LIY-T8-y9t" secondAttribute="leading" id="MpE-Gh-FKb"/>
+                                                    <constraint firstItem="XLD-Ju-h9Z" firstAttribute="centerX" secondItem="LIY-T8-y9t" secondAttribute="centerX" id="r9J-nV-EyY"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9Ro-W3-mMe" secondAttribute="bottom" id="xLD-eK-uFt"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="eOy-6h-xAc" appends="YES" id="k8M-yV-8lK"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJ3-Cq-O3j" userLabel="bedroomspot-3">
+                                            <view hidden="YES" tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJ3-Cq-O3j" userLabel="bedroomspot-3" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="82" y="355" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t9T-Fa-QVH">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEd-7D-fj1" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="t9T-Fa-QVH" firstAttribute="leading" secondItem="GJ3-Cq-O3j" secondAttribute="leading" id="6VY-o4-0WA"/>
                                                     <constraint firstAttribute="height" constant="40" id="AZQ-8G-6xe"/>
+                                                    <constraint firstItem="YEd-7D-fj1" firstAttribute="centerX" secondItem="GJ3-Cq-O3j" secondAttribute="centerX" id="Gip-mk-QyZ"/>
                                                     <constraint firstAttribute="width" constant="40" id="asR-zc-P5a"/>
+                                                    <constraint firstAttribute="trailing" secondItem="t9T-Fa-QVH" secondAttribute="trailing" id="cig-mw-Njg"/>
+                                                    <constraint firstItem="t9T-Fa-QVH" firstAttribute="top" secondItem="GJ3-Cq-O3j" secondAttribute="top" id="elL-A8-ySO"/>
+                                                    <constraint firstItem="YEd-7D-fj1" firstAttribute="centerY" secondItem="GJ3-Cq-O3j" secondAttribute="centerY" id="vYw-ZN-ttm"/>
+                                                    <constraint firstAttribute="bottom" secondItem="t9T-Fa-QVH" secondAttribute="bottom" id="yq5-e9-Opz"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="x7Y-bi-ZnF" appends="YES" id="0FV-8z-ThB"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCc-Ub-G5O" userLabel="bedroom-4">
+                                            <view hidden="YES" tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCc-Ub-G5O" userLabel="bedroom-4" customClass="NRRedZoneView">
                                                 <rect key="frame" x="198" y="376" width="103" height="71"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PWp-M4-GqX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="103" height="71"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnR-g4-VdP" userLabel="zone fee">
+                                                        <rect key="frame" x="30" y="25" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="PWp-M4-GqX" secondAttribute="trailing" id="52U-gI-ZIc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PWp-M4-GqX" secondAttribute="bottom" id="Jfs-Yh-7vA"/>
+                                                    <constraint firstItem="AnR-g4-VdP" firstAttribute="centerY" secondItem="WCc-Ub-G5O" secondAttribute="centerY" id="Pbu-dn-2Xh"/>
+                                                    <constraint firstItem="PWp-M4-GqX" firstAttribute="leading" secondItem="WCc-Ub-G5O" secondAttribute="leading" id="cH2-pp-QAO"/>
+                                                    <constraint firstItem="PWp-M4-GqX" firstAttribute="top" secondItem="WCc-Ub-G5O" secondAttribute="top" id="n5K-yj-1Hk"/>
+                                                    <constraint firstItem="AnR-g4-VdP" firstAttribute="centerX" secondItem="WCc-Ub-G5O" secondAttribute="centerX" id="vsy-ZF-KvP"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="0PJ-Te-gGg" appends="YES" id="9Hg-2T-7b6"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5P-hB-XkD" userLabel="bedroomspot-4">
+                                            <view hidden="YES" tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5P-hB-XkD" userLabel="bedroomspot-4" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="232" y="385" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UQb-IK-CGy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gR-Tj-Gw7" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="UQb-IK-CGy" firstAttribute="leading" secondItem="y5P-hB-XkD" secondAttribute="leading" id="2MT-sw-3TZ"/>
+                                                    <constraint firstItem="3gR-Tj-Gw7" firstAttribute="centerX" secondItem="y5P-hB-XkD" secondAttribute="centerX" id="LPI-W7-Ajw"/>
+                                                    <constraint firstAttribute="trailing" secondItem="UQb-IK-CGy" secondAttribute="trailing" id="Lui-La-Jio"/>
+                                                    <constraint firstItem="3gR-Tj-Gw7" firstAttribute="centerY" secondItem="y5P-hB-XkD" secondAttribute="centerY" id="S90-EK-nwW"/>
+                                                    <constraint firstItem="UQb-IK-CGy" firstAttribute="top" secondItem="y5P-hB-XkD" secondAttribute="top" id="VFm-yU-ZZa"/>
                                                     <constraint firstAttribute="height" constant="40" id="eHy-cg-Zj2"/>
                                                     <constraint firstAttribute="width" constant="40" id="hWg-H6-9k4"/>
+                                                    <constraint firstAttribute="bottom" secondItem="UQb-IK-CGy" secondAttribute="bottom" id="xtJ-K9-3Fx"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="iR6-K7-W2f" appends="YES" id="Qly-Va-6b3"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MlG-J5-XWU" userLabel="bedroom-5">
+                                            <view hidden="YES" tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MlG-J5-XWU" userLabel="bedroom-5" customClass="NRRedZoneView">
                                                 <rect key="frame" x="223" y="22" width="78" height="117"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Srp-bL-6qC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="117"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9BP-oC-KeJ" userLabel="zone fee">
+                                                        <rect key="frame" x="18" y="48" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="Srp-bL-6qC" firstAttribute="leading" secondItem="MlG-J5-XWU" secondAttribute="leading" id="740-RE-Yef"/>
+                                                    <constraint firstItem="9BP-oC-KeJ" firstAttribute="centerY" secondItem="MlG-J5-XWU" secondAttribute="centerY" id="IWL-jD-FMd"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Srp-bL-6qC" secondAttribute="bottom" id="JGI-o1-GVN"/>
+                                                    <constraint firstItem="9BP-oC-KeJ" firstAttribute="centerX" secondItem="MlG-J5-XWU" secondAttribute="centerX" id="Qk3-cn-qs9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Srp-bL-6qC" secondAttribute="trailing" id="UQN-Lv-gW9"/>
+                                                    <constraint firstItem="Srp-bL-6qC" firstAttribute="top" secondItem="MlG-J5-XWU" secondAttribute="top" id="YNt-h8-egg"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="7EX-Yp-lEh" appends="YES" id="sYa-qj-7Yo"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2C-1l-lMd" userLabel="bedroomspot-5">
+                                            <view hidden="YES" tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z2C-1l-lMd" userLabel="bedroomspot-5" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="252" y="85" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U8d-pL-BfB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LhX-Vb-d9p" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="6SC-gf-zTX"/>
+                                                    <constraint firstItem="U8d-pL-BfB" firstAttribute="leading" secondItem="z2C-1l-lMd" secondAttribute="leading" id="Bof-hF-WZ4"/>
+                                                    <constraint firstItem="U8d-pL-BfB" firstAttribute="top" secondItem="z2C-1l-lMd" secondAttribute="top" id="Kmf-LV-k5O"/>
+                                                    <constraint firstItem="LhX-Vb-d9p" firstAttribute="centerX" secondItem="z2C-1l-lMd" secondAttribute="centerX" id="TT4-md-rKy"/>
+                                                    <constraint firstItem="LhX-Vb-d9p" firstAttribute="centerY" secondItem="z2C-1l-lMd" secondAttribute="centerY" id="jUG-6i-6M3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="U8d-pL-BfB" secondAttribute="bottom" id="lTx-yE-36b"/>
                                                     <constraint firstAttribute="height" constant="40" id="qzn-Cu-AD6"/>
+                                                    <constraint firstAttribute="trailing" secondItem="U8d-pL-BfB" secondAttribute="trailing" id="rPS-rz-vfw"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="ZSQ-9a-wfa" appends="YES" id="3g8-Ov-MKN"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woh-PI-c1T" userLabel="kitchen">
+                                            <view hidden="YES" tag="6" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="woh-PI-c1T" userLabel="kitchen" customClass="NRRedZoneView">
                                                 <rect key="frame" x="106" y="266" width="61" height="85"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N1m-9m-Ydr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="61" height="85"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H6W-76-LCg" userLabel="zone fee">
+                                                        <rect key="frame" x="9" y="32" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="H6W-76-LCg" firstAttribute="centerY" secondItem="woh-PI-c1T" secondAttribute="centerY" id="J9K-Hr-lSI"/>
+                                                    <constraint firstItem="N1m-9m-Ydr" firstAttribute="top" secondItem="woh-PI-c1T" secondAttribute="top" id="Sbs-UO-trZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="N1m-9m-Ydr" secondAttribute="trailing" id="c3h-WX-u4Z"/>
+                                                    <constraint firstItem="H6W-76-LCg" firstAttribute="centerX" secondItem="woh-PI-c1T" secondAttribute="centerX" id="i6x-fJ-UyC"/>
+                                                    <constraint firstItem="N1m-9m-Ydr" firstAttribute="leading" secondItem="woh-PI-c1T" secondAttribute="leading" id="ljQ-en-0aM"/>
+                                                    <constraint firstAttribute="bottom" secondItem="N1m-9m-Ydr" secondAttribute="bottom" id="qv2-d8-Xux"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="9fs-Kp-a2j" appends="YES" id="aLP-nc-bF0"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="106" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qX3-Bs-nAt" userLabel="kitchenspot">
+                                            <view hidden="YES" tag="106" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qX3-Bs-nAt" userLabel="kitchenspot" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="117" y="275" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="G1U-yP-SBq">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYR-fa-haQ" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstItem="G1U-yP-SBq" firstAttribute="leading" secondItem="qX3-Bs-nAt" secondAttribute="leading" id="7Z4-YB-aeb"/>
                                                     <constraint firstAttribute="width" constant="40" id="8ah-tX-cDy"/>
+                                                    <constraint firstAttribute="bottom" secondItem="G1U-yP-SBq" secondAttribute="bottom" id="IM7-NO-4OB"/>
                                                     <constraint firstAttribute="height" constant="40" id="SbR-sT-nrQ"/>
+                                                    <constraint firstItem="pYR-fa-haQ" firstAttribute="centerX" secondItem="qX3-Bs-nAt" secondAttribute="centerX" id="faU-y8-bpS"/>
+                                                    <constraint firstItem="G1U-yP-SBq" firstAttribute="top" secondItem="qX3-Bs-nAt" secondAttribute="top" id="hHw-Qk-U7q"/>
+                                                    <constraint firstAttribute="trailing" secondItem="G1U-yP-SBq" secondAttribute="trailing" id="opM-Gj-awH"/>
+                                                    <constraint firstItem="pYR-fa-haQ" firstAttribute="centerY" secondItem="qX3-Bs-nAt" secondAttribute="centerY" id="s6c-Es-c49"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="Vak-GA-Kg1" appends="YES" id="xpx-5H-Hky"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-on-Kdw" userLabel="lobby">
+                                            <view hidden="YES" tag="7" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhp-on-Kdw" userLabel="lobby" customClass="NRRedZoneView">
                                                 <rect key="frame" x="158" y="355" width="36" height="68"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sNj-rQ-vQx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="36" height="68"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X17-EZ-D6A" userLabel="zone fee">
+                                                        <rect key="frame" x="-3" y="23" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="sNj-rQ-vQx" secondAttribute="trailing" id="1V4-Ft-G4q"/>
+                                                    <constraint firstItem="X17-EZ-D6A" firstAttribute="centerY" secondItem="dhp-on-Kdw" secondAttribute="centerY" id="42l-ox-YBj"/>
+                                                    <constraint firstItem="sNj-rQ-vQx" firstAttribute="leading" secondItem="dhp-on-Kdw" secondAttribute="leading" id="8Ac-ix-OdB"/>
+                                                    <constraint firstItem="X17-EZ-D6A" firstAttribute="centerX" secondItem="dhp-on-Kdw" secondAttribute="centerX" id="NDa-ow-C9F"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sNj-rQ-vQx" secondAttribute="bottom" id="haB-hk-XMd"/>
+                                                    <constraint firstItem="sNj-rQ-vQx" firstAttribute="top" secondItem="dhp-on-Kdw" secondAttribute="top" id="rt3-qI-UKq"/>
+                                                </constraints>
                                             </view>
-                                            <view hidden="YES" tag="107" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRD-fb-NYh" userLabel="lobbyspot">
+                                            <view hidden="YES" tag="107" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BRD-fb-NYh" userLabel="lobbyspot" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="157" y="370" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HI4-pi-zr4">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEs-Zn-JrD" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstItem="AEs-Zn-JrD" firstAttribute="centerY" secondItem="BRD-fb-NYh" secondAttribute="centerY" id="16S-x4-Zjv"/>
+                                                    <constraint firstItem="AEs-Zn-JrD" firstAttribute="centerX" secondItem="BRD-fb-NYh" secondAttribute="centerX" id="2KN-Ta-xKG"/>
+                                                    <constraint firstItem="HI4-pi-zr4" firstAttribute="leading" secondItem="BRD-fb-NYh" secondAttribute="leading" id="74l-rv-A83"/>
                                                     <constraint firstAttribute="width" constant="40" id="Dqz-za-LiU"/>
                                                     <constraint firstAttribute="height" constant="40" id="HE3-bU-d3B"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HI4-pi-zr4" secondAttribute="trailing" id="K6a-7G-GEG"/>
+                                                    <constraint firstItem="HI4-pi-zr4" firstAttribute="top" secondItem="BRD-fb-NYh" secondAttribute="top" id="rTa-7L-471"/>
+                                                    <constraint firstAttribute="bottom" secondItem="HI4-pi-zr4" secondAttribute="bottom" id="sYf-Ep-tuT"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MO-sg-h0L" userLabel="enter">
+                                            <view hidden="YES" tag="8" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MO-sg-h0L" userLabel="enter" customClass="NRRedZoneView">
                                                 <rect key="frame" x="125" y="428" width="69" height="63"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oUA-Or-HW6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="63"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iyr-4u-tGE" userLabel="zone fee">
+                                                        <rect key="frame" x="13" y="21" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="oUA-Or-HW6" firstAttribute="leading" secondItem="4MO-sg-h0L" secondAttribute="leading" id="2tF-sJ-deg"/>
+                                                    <constraint firstItem="Iyr-4u-tGE" firstAttribute="centerY" secondItem="4MO-sg-h0L" secondAttribute="centerY" id="6nl-TN-zqO"/>
+                                                    <constraint firstItem="Iyr-4u-tGE" firstAttribute="centerX" secondItem="4MO-sg-h0L" secondAttribute="centerX" id="7bf-Pf-oDZ"/>
+                                                    <constraint firstItem="oUA-Or-HW6" firstAttribute="top" secondItem="4MO-sg-h0L" secondAttribute="top" id="BBs-zf-lpb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="oUA-Or-HW6" secondAttribute="bottom" id="j4b-Jq-nDd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="oUA-Or-HW6" secondAttribute="trailing" id="lyv-Be-RyK"/>
+                                                </constraints>
                                             </view>
-                                            <view hidden="YES" tag="108" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-OU-Aok" userLabel="patiospot">
+                                            <view hidden="YES" tag="108" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-OU-Aok" userLabel="patiospot" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="137" y="440" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XQU-Ev-Btl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="la0-zE-aka" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstItem="la0-zE-aka" firstAttribute="centerY" secondItem="XN3-OU-Aok" secondAttribute="centerY" id="1MR-fS-6Kc"/>
+                                                    <constraint firstAttribute="bottom" secondItem="XQU-Ev-Btl" secondAttribute="bottom" id="8oq-rl-xYS"/>
                                                     <constraint firstAttribute="width" constant="40" id="Pdk-78-pV6"/>
+                                                    <constraint firstItem="XQU-Ev-Btl" firstAttribute="top" secondItem="XN3-OU-Aok" secondAttribute="top" id="TJS-Ch-2mv"/>
                                                     <constraint firstAttribute="height" constant="40" id="aED-Q5-iuA"/>
+                                                    <constraint firstItem="XQU-Ev-Btl" firstAttribute="leading" secondItem="XN3-OU-Aok" secondAttribute="leading" id="jT2-zT-cCg"/>
+                                                    <constraint firstItem="la0-zE-aka" firstAttribute="centerX" secondItem="XN3-OU-Aok" secondAttribute="centerX" id="nnz-dL-9Hx"/>
+                                                    <constraint firstAttribute="trailing" secondItem="XQU-Ev-Btl" secondAttribute="trailing" id="smG-uI-bLJ"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-6m-NP6" userLabel="dining">
+                                            <view hidden="YES" tag="9" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc4-6m-NP6" userLabel="dining" customClass="NRRedZoneView">
                                                 <rect key="frame" x="171" y="247" width="109" height="85"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="66I-df-ahr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="85"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmn-41-HNY" userLabel="zone fee">
+                                                        <rect key="frame" x="33" y="32" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="Tmn-41-HNY" firstAttribute="centerX" secondItem="hc4-6m-NP6" secondAttribute="centerX" id="30n-HZ-4h3"/>
+                                                    <constraint firstItem="66I-df-ahr" firstAttribute="leading" secondItem="hc4-6m-NP6" secondAttribute="leading" id="5xz-gK-k4K"/>
+                                                    <constraint firstItem="66I-df-ahr" firstAttribute="top" secondItem="hc4-6m-NP6" secondAttribute="top" id="EWX-zA-6oH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="66I-df-ahr" secondAttribute="trailing" id="FYP-13-yNE"/>
+                                                    <constraint firstItem="Tmn-41-HNY" firstAttribute="centerY" secondItem="hc4-6m-NP6" secondAttribute="centerY" id="Wug-v0-kr9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="66I-df-ahr" secondAttribute="bottom" id="ZLf-pI-ncF"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="kB6-9m-2NM" appends="YES" id="HKb-Qm-Kqa"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="109" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4g-f5-j2f" userLabel="diningspot">
+                                            <view hidden="YES" tag="109" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a4g-f5-j2f" userLabel="diningspot" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="177" y="270" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MHL-Xq-FpA">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ade-Bn-6Ge" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="2yf-Lm-S0S"/>
+                                                    <constraint firstItem="MHL-Xq-FpA" firstAttribute="top" secondItem="a4g-f5-j2f" secondAttribute="top" id="4QH-mt-Rbh"/>
                                                     <constraint firstAttribute="width" constant="40" id="Age-pK-Kmd"/>
+                                                    <constraint firstItem="MHL-Xq-FpA" firstAttribute="leading" secondItem="a4g-f5-j2f" secondAttribute="leading" id="VYh-BO-nSH"/>
+                                                    <constraint firstItem="Ade-Bn-6Ge" firstAttribute="centerY" secondItem="a4g-f5-j2f" secondAttribute="centerY" id="btV-P5-sCT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MHL-Xq-FpA" secondAttribute="trailing" id="oxT-EO-0Ad"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MHL-Xq-FpA" secondAttribute="bottom" id="pYf-tI-Efn"/>
+                                                    <constraint firstItem="Ade-Bn-6Ge" firstAttribute="centerX" secondItem="a4g-f5-j2f" secondAttribute="centerX" id="thO-I4-AS5"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="IXv-sl-ULf" appends="YES" id="Wgn-3H-dt6"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lmw-TZ-QYb" userLabel="living">
+                                            <view hidden="YES" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lmw-TZ-QYb" userLabel="living" customClass="NRRedZoneView">
                                                 <rect key="frame" x="171" y="145" width="130" height="96"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tw4-zj-Loz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="130" height="96"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWi-3o-GBx" userLabel="zone fee">
+                                                        <rect key="frame" x="44" y="37" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstItem="tw4-zj-Loz" firstAttribute="top" secondItem="Lmw-TZ-QYb" secondAttribute="top" id="GpJ-uy-ken"/>
+                                                    <constraint firstAttribute="bottom" secondItem="tw4-zj-Loz" secondAttribute="bottom" id="NTa-Yc-c9g"/>
+                                                    <constraint firstAttribute="trailing" secondItem="tw4-zj-Loz" secondAttribute="trailing" id="e8r-LU-dQY"/>
+                                                    <constraint firstItem="GWi-3o-GBx" firstAttribute="centerX" secondItem="Lmw-TZ-QYb" secondAttribute="centerX" id="rTx-I2-6Jk"/>
+                                                    <constraint firstItem="GWi-3o-GBx" firstAttribute="centerY" secondItem="Lmw-TZ-QYb" secondAttribute="centerY" id="sqt-oR-BKE"/>
+                                                    <constraint firstItem="tw4-zj-Loz" firstAttribute="leading" secondItem="Lmw-TZ-QYb" secondAttribute="leading" id="utY-RF-1Wj"/>
+                                                </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="anZ-bl-T0m" appends="YES" id="yzS-Bh-DhW"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="110" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NG3-d7-ZHx" userLabel="livingspot">
+                                            <view hidden="YES" tag="110" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NG3-d7-ZHx" userLabel="livingspot" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="232" y="175" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="giB-G0-aec">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kgw-ZS-7Tn" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="giB-G0-aec" secondAttribute="trailing" id="8ls-vW-dBx"/>
+                                                    <constraint firstAttribute="bottom" secondItem="giB-G0-aec" secondAttribute="bottom" id="A1F-W5-udB"/>
                                                     <constraint firstAttribute="width" constant="40" id="CK0-xv-Aoq"/>
                                                     <constraint firstAttribute="height" constant="40" id="GXk-82-2yF"/>
+                                                    <constraint firstItem="giB-G0-aec" firstAttribute="top" secondItem="NG3-d7-ZHx" secondAttribute="top" id="UFN-Ag-ijF"/>
+                                                    <constraint firstItem="kgw-ZS-7Tn" firstAttribute="centerX" secondItem="NG3-d7-ZHx" secondAttribute="centerX" id="ctY-Az-YuP"/>
+                                                    <constraint firstItem="giB-G0-aec" firstAttribute="leading" secondItem="NG3-d7-ZHx" secondAttribute="leading" id="kM1-h0-Riz"/>
+                                                    <constraint firstItem="kgw-ZS-7Tn" firstAttribute="centerY" secondItem="NG3-d7-ZHx" secondAttribute="centerY" id="kzd-ax-R9W"/>
                                                 </constraints>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="gr4-zJ-h0a" appends="YES" id="wT0-dV-Blr"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-LZ-KR0" userLabel="teracce-1">
+                                            <view hidden="YES" tag="11" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lba-LZ-KR0" userLabel="teracce-1" customClass="NRRedZoneView">
                                                 <rect key="frame" x="42" y="23" width="34" height="77"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MmE-fa-dTJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="34" height="77"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpG-co-ofO" userLabel="zone fee">
+                                                        <rect key="frame" x="-4" y="28" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="MmE-fa-dTJ" firstAttribute="leading" secondItem="lba-LZ-KR0" secondAttribute="leading" id="8Gs-cU-slf"/>
+                                                    <constraint firstItem="MmE-fa-dTJ" firstAttribute="top" secondItem="lba-LZ-KR0" secondAttribute="top" id="Pt7-Ld-B18"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MmE-fa-dTJ" secondAttribute="trailing" id="U06-3a-qBR"/>
+                                                    <constraint firstItem="lpG-co-ofO" firstAttribute="centerX" secondItem="lba-LZ-KR0" secondAttribute="centerX" id="VPe-NC-Si0"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MmE-fa-dTJ" secondAttribute="bottom" id="ggN-Mf-sRi"/>
+                                                    <constraint firstItem="lpG-co-ofO" firstAttribute="centerY" secondItem="lba-LZ-KR0" secondAttribute="centerY" id="lzn-ZZ-CGw"/>
+                                                </constraints>
                                             </view>
-                                            <view hidden="YES" tag="111" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeX-Re-tU2" userLabel="teraccespot-1">
+                                            <view hidden="YES" tag="111" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZeX-Re-tU2" userLabel="teraccespot-1" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="37" y="55" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DzD-Ks-Vee">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDt-xq-E24" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="DzD-Ks-Vee" secondAttribute="bottom" id="H9N-Tm-Piy"/>
+                                                    <constraint firstItem="CDt-xq-E24" firstAttribute="centerX" secondItem="ZeX-Re-tU2" secondAttribute="centerX" id="NWQ-Vs-Gxc"/>
+                                                    <constraint firstItem="CDt-xq-E24" firstAttribute="centerY" secondItem="ZeX-Re-tU2" secondAttribute="centerY" id="dmH-sZ-yUz"/>
+                                                    <constraint firstItem="DzD-Ks-Vee" firstAttribute="leading" secondItem="ZeX-Re-tU2" secondAttribute="leading" id="q51-na-TXi"/>
                                                     <constraint firstAttribute="width" constant="40" id="tZD-Jg-p7O"/>
+                                                    <constraint firstItem="DzD-Ks-Vee" firstAttribute="top" secondItem="ZeX-Re-tU2" secondAttribute="top" id="tZS-sS-4t8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="DzD-Ks-Vee" secondAttribute="trailing" id="xth-f2-o16"/>
                                                     <constraint firstAttribute="height" constant="40" id="zzK-eI-ejN"/>
                                                 </constraints>
                                             </view>
-                                            <view hidden="YES" tag="12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ8-1L-q6S" userLabel="teracce-2">
+                                            <view hidden="YES" tag="12" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZ8-1L-q6S" userLabel="teracce-2" customClass="NRRedZoneView">
                                                 <rect key="frame" x="284" y="247" width="33" height="85"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="44" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MjT-RX-rYY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="33" height="85"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="66" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHK-0o-1go" userLabel="zone fee">
+                                                        <rect key="frame" x="-5" y="32" width="42.5" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="18"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.99965196847915649" green="0.24635598063468933" blue="0.0085997618734836578" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="MjT-RX-rYY" secondAttribute="trailing" id="4cp-Yq-oFk"/>
+                                                    <constraint firstItem="hHK-0o-1go" firstAttribute="centerX" secondItem="oZ8-1L-q6S" secondAttribute="centerX" id="Dqb-DJ-91g"/>
+                                                    <constraint firstItem="MjT-RX-rYY" firstAttribute="top" secondItem="oZ8-1L-q6S" secondAttribute="top" id="VwN-m8-A7q"/>
+                                                    <constraint firstItem="MjT-RX-rYY" firstAttribute="leading" secondItem="oZ8-1L-q6S" secondAttribute="leading" id="jWP-QA-3LX"/>
+                                                    <constraint firstAttribute="bottom" secondItem="MjT-RX-rYY" secondAttribute="bottom" id="xt0-0m-zZp"/>
+                                                    <constraint firstItem="hHK-0o-1go" firstAttribute="centerY" secondItem="oZ8-1L-q6S" secondAttribute="centerY" id="zgD-X5-qcg"/>
+                                                </constraints>
                                             </view>
-                                            <view hidden="YES" tag="112" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeh-Ph-E22" userLabel="teraccespot-2">
+                                            <view hidden="YES" tag="112" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeh-Ph-E22" userLabel="teraccespot-2" customClass="NRTargetSpotView">
                                                 <rect key="frame" x="289" y="270" width="40" height="40"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="11" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8TI-qb-sPQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="55" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6r-3w-Qsg" userLabel="spot score">
+                                                        <rect key="frame" x="9.5" y="8" width="22.5" height="24"/>
+                                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
                                                 <color key="backgroundColor" red="0.37051176720000001" green="0.44039560220000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
+                                                    <constraint firstItem="8TI-qb-sPQ" firstAttribute="top" secondItem="yeh-Ph-E22" secondAttribute="top" id="5RE-5Y-Otw"/>
+                                                    <constraint firstItem="b6r-3w-Qsg" firstAttribute="centerY" secondItem="yeh-Ph-E22" secondAttribute="centerY" id="9bh-SR-dUS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="8TI-qb-sPQ" secondAttribute="bottom" id="DBK-J1-CiQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="8TI-qb-sPQ" secondAttribute="trailing" id="Nh4-oe-bFs"/>
+                                                    <constraint firstItem="8TI-qb-sPQ" firstAttribute="leading" secondItem="yeh-Ph-E22" secondAttribute="leading" id="UJX-3J-g80"/>
                                                     <constraint firstAttribute="width" constant="40" id="a0t-PN-AZK"/>
                                                     <constraint firstAttribute="height" constant="40" id="eJB-56-5xi"/>
+                                                    <constraint firstItem="b6r-3w-Qsg" firstAttribute="centerX" secondItem="yeh-Ph-E22" secondAttribute="centerX" id="wHR-wm-vnk"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -347,7 +849,7 @@
                                     <constraint firstItem="s7V-lS-ZUD" firstAttribute="centerY" secondItem="rXj-HX-dqr" secondAttribute="centerY" id="BxM-GI-O4u"/>
                                     <constraint firstItem="FkB-tW-zGI" firstAttribute="centerY" secondItem="s7V-lS-ZUD" secondAttribute="centerY" id="Md0-16-WEl"/>
                                     <constraint firstItem="FkB-tW-zGI" firstAttribute="centerX" secondItem="s7V-lS-ZUD" secondAttribute="centerX" id="RT8-Hy-W9c"/>
-                                    <constraint firstItem="s7V-lS-ZUD" firstAttribute="height" secondItem="rXj-HX-dqr" secondAttribute="height" id="YhV-s9-2s6"/>
+                                    <constraint firstItem="s7V-lS-ZUD" firstAttribute="height" secondItem="rXj-HX-dqr" secondAttribute="height" constant="-16" id="YhV-s9-2s6"/>
                                     <constraint firstItem="FkB-tW-zGI" firstAttribute="height" secondItem="s7V-lS-ZUD" secondAttribute="height" id="zWy-kt-eg0"/>
                                 </constraints>
                             </view>
@@ -355,11 +857,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="bA0-9v-IaQ" secondAttribute="trailing" id="3wd-9U-CPz"/>
-                            <constraint firstItem="bA0-9v-IaQ" firstAttribute="top" secondItem="rXj-HX-dqr" secondAttribute="bottom" constant="8" id="FhQ-gI-PWw"/>
+                            <constraint firstItem="bA0-9v-IaQ" firstAttribute="top" secondItem="rXj-HX-dqr" secondAttribute="bottom" id="FhQ-gI-PWw"/>
                             <constraint firstItem="EMK-ql-tw6" firstAttribute="leading" secondItem="0ba-nX-Q9q" secondAttribute="leading" id="QQ7-H2-RYH"/>
                             <constraint firstItem="bA0-9v-IaQ" firstAttribute="leading" secondItem="0ba-nX-Q9q" secondAttribute="leading" id="QVG-wS-EY9"/>
                             <constraint firstAttribute="trailing" secondItem="EMK-ql-tw6" secondAttribute="trailing" id="bHh-Ld-Vav"/>
-                            <constraint firstItem="rXj-HX-dqr" firstAttribute="top" secondItem="EMK-ql-tw6" secondAttribute="bottom" constant="8" id="en3-0b-gbN"/>
+                            <constraint firstItem="rXj-HX-dqr" firstAttribute="top" secondItem="EMK-ql-tw6" secondAttribute="bottom" id="en3-0b-gbN"/>
                             <constraint firstAttribute="bottom" secondItem="bA0-9v-IaQ" secondAttribute="bottom" id="isq-fj-qrq"/>
                             <constraint firstItem="rXj-HX-dqr" firstAttribute="leading" secondItem="c91-Pd-tmL" secondAttribute="leading" id="oWx-LV-jKD"/>
                             <constraint firstItem="rXj-HX-dqr" firstAttribute="trailing" secondItem="c91-Pd-tmL" secondAttribute="trailing" id="t02-Y2-Y9w"/>
@@ -369,6 +871,14 @@
                     </view>
                     <connections>
                         <outlet property="allSpotsContainer" destination="FkB-tW-zGI" id="PSX-wd-Yxf"/>
+                        <outlet property="botbarContainer" destination="bA0-9v-IaQ" id="yRR-Kb-R8U"/>
+                        <outlet property="fieldContainer" destination="rXj-HX-dqr" id="zoN-F1-ojH"/>
+                        <outlet property="gameScoreLabel" destination="Ktp-Qg-31p" id="fKu-cC-Npf"/>
+                        <outlet property="leaveButton" destination="GFI-Sb-vu3" id="1Tx-3h-10p"/>
+                        <outlet property="livesLeftLabel" destination="c7c-QK-JKg" id="ZI7-kx-S8P"/>
+                        <outlet property="livesTitleLabel" destination="BfQ-wJ-mqb" id="8mX-at-P4p"/>
+                        <outlet property="runTimeLabel" destination="11V-Tp-yfU" id="c1q-Qk-dTI"/>
+                        <outlet property="topbarContainer" destination="EMK-ql-tw6" id="TMz-Np-8cy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1e-td-z9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -458,5 +968,14 @@
     </scenes>
     <resources>
         <image name="floorplan" width="464" height="706"/>
+        <namedColor name="darkBack">
+            <color red="0.31200000643730164" green="0.31200000643730164" blue="0.31200000643730164" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="whiteText">
+            <color red="0.99500000476837158" green="0.99000000953674316" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="whiteText">
+            <color red="0.99500000476837158" green="0.99000000953674316" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

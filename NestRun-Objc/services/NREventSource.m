@@ -173,6 +173,7 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
                 dispatch_async(messageQueue, 
                 ^{
                     [self _dispatchEvent:event];
+                    NSLog(@"EventSource: event dispatched");
                 });
                 
                 event = [Event new];

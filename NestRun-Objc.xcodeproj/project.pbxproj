@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90587201FB9B3A500A38A47 /* NRTargetSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = E905871F1FB9B3A500A38A47 /* NRTargetSpotView.m */; };
+		E90587231FB9B3C500A38A47 /* NRRedZoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90587221FB9B3C500A38A47 /* NRRedZoneView.m */; };
+		E93457061FBA4F6F008A9D9C /* NRGameLobbyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E93457051FBA4F6F008A9D9C /* NRGameLobbyVC.m */; };
 		E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E95B68AC1FB07C0D008143E5 /* AppDelegate.m */; };
 		E95B68B31FB07C0D008143E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B11FB07C0D008143E5 /* Main.storyboard */; };
 		E95B68B51FB07C0D008143E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E95B68B41FB07C0D008143E5 /* Assets.xcassets */; };
@@ -28,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E905871E1FB9B3A500A38A47 /* NRTargetSpotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRTargetSpotView.h; sourceTree = "<group>"; };
+		E905871F1FB9B3A500A38A47 /* NRTargetSpotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRTargetSpotView.m; sourceTree = "<group>"; };
+		E90587211FB9B3C500A38A47 /* NRRedZoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRRedZoneView.h; sourceTree = "<group>"; };
+		E90587221FB9B3C500A38A47 /* NRRedZoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRRedZoneView.m; sourceTree = "<group>"; };
+		E93457041FBA4F6F008A9D9C /* NRGameLobbyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRGameLobbyVC.h; sourceTree = "<group>"; };
+		E93457051FBA4F6F008A9D9C /* NRGameLobbyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NRGameLobbyVC.m; sourceTree = "<group>"; };
 		E95B68A81FB07C0D008143E5 /* NestRun-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NestRun-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E95B68AB1FB07C0D008143E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E95B68AC1FB07C0D008143E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -208,6 +217,8 @@
 				E95B68D91FB08C8B008143E5 /* NRLoginVC.m */,
 				E95B68DB1FB08CA0008143E5 /* NRLobbyVC.h */,
 				E95B68DC1FB08CA0008143E5 /* NRLobbyVC.m */,
+				E93457041FBA4F6F008A9D9C /* NRGameLobbyVC.h */,
+				E93457051FBA4F6F008A9D9C /* NRGameLobbyVC.m */,
 			);
 			path = shell;
 			sourceTree = "<group>";
@@ -217,6 +228,10 @@
 			children = (
 				E961FCE11FB756EC009A8208 /* NRGameVC.h */,
 				E961FCE21FB756EC009A8208 /* NRGameVC.m */,
+				E905871E1FB9B3A500A38A47 /* NRTargetSpotView.h */,
+				E905871F1FB9B3A500A38A47 /* NRTargetSpotView.m */,
+				E90587211FB9B3C500A38A47 /* NRRedZoneView.h */,
+				E90587221FB9B3C500A38A47 /* NRRedZoneView.m */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -298,12 +313,15 @@
 				E95B68CD1FB08051008143E5 /* ChSimpleRootContainerVC.m in Sources */,
 				E95B68D31FB0825C008143E5 /* RootContainerVC.m in Sources */,
 				E95B68BB1FB07C0D008143E5 /* main.m in Sources */,
+				E93457061FBA4F6F008A9D9C /* NRGameLobbyVC.m in Sources */,
 				E961FCE91FB76986009A8208 /* NRRunController.m in Sources */,
 				E95B68DA1FB08C8B008143E5 /* NRLoginVC.m in Sources */,
+				E90587201FB9B3A500A38A47 /* NRTargetSpotView.m in Sources */,
 				E961FCDC1FB60AD0009A8208 /* NRCommonExtensions.m in Sources */,
 				E95B68AD1FB07C0D008143E5 /* AppDelegate.m in Sources */,
 				E961FCE31FB756EC009A8208 /* NRGameVC.m in Sources */,
 				E95B68CA1FB07E42008143E5 /* NREventSource.m in Sources */,
+				E90587231FB9B3C500A38A47 /* NRRedZoneView.m in Sources */,
 				E961FCE61FB76971009A8208 /* NRGameController.m in Sources */,
 				E95B68E31FB0BD9E008143E5 /* NRNestCameraFetcher.m in Sources */,
 				E95B68DD1FB08CA0008143E5 /* NRLobbyVC.m in Sources */,

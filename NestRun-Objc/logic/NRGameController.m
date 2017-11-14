@@ -40,17 +40,22 @@
     {
         if(success)
         {
-            _gameScore = 50;
             _cameraIDs = [[NRNestCameraFetcher shared].cameraIDs mutableCopy];
+            [_cameraIDs  setObject:@"initial-cam-id" forKey:Initial_cam];
             dispatch_async(dispatch_get_main_queue(), 
             ^{
                 [self.display attachCameras:_cameraIDs];
-                [self.display gameStartedWithInitialScore:_gameScore lives:_gameLives];
+                [self initGame];
                 [[NRNestCameraFetcher shared] startCamerasObserving];
                 [self nextRunLoop];
             });
         }
     }];
+}
+
+- (void) stopGame
+{
+    [self gameOver];
 }
 
 - (void) startSimGame:(NSString*)ename
@@ -59,14 +64,13 @@
     {
          if(success)
          {
-            _gameScore = 50;
             // NOTE: for sim only to put all game starts in
             _cameraIDs = [[NRNestCameraFetcher shared].cameraIDs mutableCopy];
-            [_cameraIDs  setObject:@"entryway-cam-id" forKey:Entryway_cam];
+            [_cameraIDs  setObject:@"initial-cam-id" forKey:Initial_cam];
             dispatch_async(dispatch_get_main_queue(), 
             ^{
                 [self.display attachCameras:_cameraIDs];
-                [self.display gameStartedWithInitialScore:_gameScore lives:_gameLives];
+                [self initGame];
                 [[NRNestCameraFetcher shared] startSimulatedCamerasObserving:ename];
                 [self nextRunLoop];
             });
@@ -137,7 +141,7 @@
 {
     self.secondsToWait -= 1;
     [self decrementRunScore:10];
-    if(_secondsToWait>0) return;
+    if(_secondsToWait>=0) return;
     [_runTimer invalidate];
     [self runOver];
 }
@@ -155,7 +159,7 @@
 }
 - (void) controlGameState
 {
-    if(self.gameScore < 0)
+    if(self.runScore <= 0)
     {
         self.gameLives -= 1;
         if(self.gameLives == 0)
@@ -165,15 +169,16 @@
         }
         else
         {
-            self.gameScore = 0;
+            self.runScore = 0;
         }
     }
     // New run
-    dispatch_async(dispatch_get_main_queue(), 
+    // TODO: start timer and send indication to display
+    dispatch_time_t start_time = dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC);
+    dispatch_after(start_time, dispatch_get_main_queue(), 
     ^{
         [self nextRunLoop];
     });
-    
 }
 - (void) gameOver
 {
@@ -199,7 +204,7 @@
 - (void) setRunScore:(int)score
 {
     if(_runScore == score) return;
-    _runScore = score;
+    _runScore = (score>0) ? score : 0;
     [_display runScore:_runScore gameScore:self.gameScore livesLeft:self.gameLives];
 }
 - (void) setSecondsToRun:(int)seconds
@@ -218,6 +223,13 @@
 
 #pragma mark - GAME PREPARE
 
+- (void) initGame
+{
+    self.gameScore = 50;
+    self.gameLives = 3;
+    [self.display gameStartedWithInitialScore:_gameScore lives:_gameLives];
+}
+
 /// Test random selectors for a terget and red zones. Real game will require much more sophisticated approach
 - (NSString*) selectRunTarget
 {
@@ -229,7 +241,7 @@
         target_cam_name = _cameraIDs.allKeys[index];
         new_run_target  = _cameraIDs[target_cam_name];
     }
-    while(EQS(_lastRunTarget,new_run_target) || EQS(Entryway_cam, target_cam_name));
+    while(EQS(_lastRunTarget,new_run_target) || EQS(Initial_cam, target_cam_name));
     
     NSLog(@"NEW RUN: TARGET: %@", target_cam_name);
     return new_run_target;
@@ -241,9 +253,9 @@
     NSMutableArray* non_targets = _cameraIDs.allValues.mutableCopy;
     [non_targets removeObject:target];
     [non_targets removeObject:origin];
-    [non_targets removeObject:_cameraIDs[Entryway_cam]];
+    [non_targets removeObject:_cameraIDs[Initial_cam]];
     NSString* red_zone;
-    for(int i=0; i<3; i++)
+    for(int i=0; i<4; i++)
     {
         int index = (int)arc4random_uniform((uint32_t)non_targets.count);
         red_zone = non_targets[index];

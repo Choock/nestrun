@@ -8,6 +8,7 @@
 
 #import "RootSegues.h"
 #import "RootContainerVC.h"
+#import "NRGameVC.h"
 
 
 @implementation RootLoginSegue
@@ -37,13 +38,12 @@
     RootContainerVC* root = (RootContainerVC*)self.sourceViewController;
     ChSimpleRootContainerReplacementAnimation animation = rra_SlideDown;
     
-//    if     ([root.presentChildVC isKindOfClass:[GameFieldVC class]]) animation = rra_SlideDown;
-//    else if([root.presentChildVC isKindOfClass:[GameStatsVC class]]) animation = rra_SlideDown;
-//    else                                                             animation = rra_Dissolve;
+    if([root.presentChildVC isKindOfClass:[NRGameVC class]]) animation = rra_SlideRight;
+    else                                                     animation = rra_SlideDown;
     
     NSDictionary* a_descriptor = @{
                                    RRA_ID       :@(animation),
-                                   RRA_OPTS     :@(UIViewAnimationOptionCurveLinear),
+                                   RRA_OPTS     :@(UIViewAnimationOptionCurveEaseOut),
                                    RRA_TIME     :@(0.3),
                                    RRA_X_OVERRUN:@(0),
                                    RRA_Y_OVERRUN:@(0)
@@ -65,7 +65,7 @@
 - (void) perform
 {
     RootContainerVC* root = (RootContainerVC*)self.sourceViewController;
-    ChSimpleRootContainerReplacementAnimation animation = rra_SlideUp;
+    ChSimpleRootContainerReplacementAnimation animation = rra_SlideLeft;
     
     //    if     ([root.presentChildVC isKindOfClass:[GameFieldVC class]]) animation = rra_SlideDown;
     //    else if([root.presentChildVC isKindOfClass:[GameStatsVC class]]) animation = rra_SlideDown;
@@ -73,7 +73,7 @@
     
     NSDictionary* a_descriptor = @{
                                    RRA_ID       :@(animation),
-                                   RRA_OPTS     :@(UIViewAnimationOptionCurveLinear),
+                                   RRA_OPTS     :@(UIViewAnimationOptionCurveEaseOut),
                                    RRA_TIME     :@(0.3),
                                    RRA_X_OVERRUN:@(0),
                                    RRA_Y_OVERRUN:@(0)
