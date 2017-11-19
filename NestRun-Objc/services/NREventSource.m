@@ -173,7 +173,7 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
                 dispatch_async(messageQueue, 
                 ^{
                     [self _dispatchEvent:event];
-                    NSLog(@"EventSource: event dispatched");
+                    NSLog(@"EventSource: event dispatched: %@", event.event);
                 });
                 
                 event = [Event new];
@@ -255,7 +255,7 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
                                                        timeoutInterval:self.timeoutInterval];
     // TODO: move outside
     NSDictionary *headers = @{ @"accept": @"text/event-stream",
-                               @"authorization": [NRNestAccessService shared].accessToken.bearer,//  @"Bearer c.TFmINLt7JgXfRIu9HrP306Xn4nhktF6GJ7FeqVbfGCXRZoeWXXiPJqGIjYR8t6EixCqhH7UmKZ5UHal3AVb3ZjZGaYHpK49iFVcUFFXUCTIGSlEpKfOZRBPaOKUZIgccRNAEQUmLJNGO4G55",
+                               @"authorization": [NRNestAccessService shared].accessToken.bearer,
                                @"content-type": @"application/json",
                                @"cache-control": @"no-cache"};
     

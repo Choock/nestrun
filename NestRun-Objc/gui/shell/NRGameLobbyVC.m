@@ -22,6 +22,7 @@
     @property (weak, nonatomic) IBOutlet UIView *contentContainer;
 
     @property (weak, nonatomic) IBOutlet UIButton *startButton;
+    @property (weak, nonatomic) IBOutlet UIButton *streamTestButton;
 
 @end
 
@@ -37,7 +38,6 @@
     self.playerList.dataSource = self;
     [self.view layoutSubviews];
     [self setupView];
-    //[self testStreaming];
 }
 
 - (void) setupView
@@ -65,14 +65,16 @@
     self.topContainer.backgroundColor = [UIColor colorNamed:@"darkBack"];
     self.botContainer.backgroundColor = [UIColor colorNamed:@"darkBack"]; 
     
-//    self.gameScoreLabel.textColor = [UIColor colorNamed:@"whiteText"];
-//    self.livesLeftLabel.textColor = [UIColor colorNamed:@"whiteText"];
-//    self.runTimeLabel.textColor   = [UIColor colorNamed:@"whiteText"];
-    
     CALayer* button_layer = self.startButton.layer;
     button_layer.cornerRadius = 15;
     button_layer.borderWidth = 1;
     button_layer.borderColor = [[UIColor colorNamed:@"whiteText"] CGColor];
+    
+    #ifdef DEBUG
+    self.streamTestButton.hidden = NO;
+    #else
+    self.streamTestButton.hidden = YES;
+    #endif
 }
 
 #pragma mark - HANDLERS
@@ -81,6 +83,10 @@
 {
     RootContainerVC* root = (RootContainerVC*)(self.parentViewController);
     [root performSegueWithIdentifier:RootGameSegue.sid sender:self];
+}
+- (IBAction)onStreamTestButton:(id)sender 
+{
+    [self testStreaming];
 }
 
 
@@ -138,6 +144,11 @@
 
 #pragma mark - AUX
 
+- (void) dealloc
+{
+    [[NRNestCameraFetcher shared] stopCamerasObserving];
+}
+
 /// Demo data
 
 static NSString* name_key  = @"uname";
@@ -168,9 +179,9 @@ static NSString* score_key = @"score";
      {
          if(success) NSLog(@"CAMERAS FETCHED");
          
-         NSString* entry_cam_id = [NRNestCameraFetcher shared].cameraIDs[Bedroom_1_cam];
+         NSString* cam_id = [NRNestCameraFetcher shared].cameraIDs[Bedroom_1_cam];
          NRGameLobbyVC* __weak wself = self;
-         [[NRNestCameraFetcher shared] switchOnListenerForCameraID:entry_cam_id 
+         [[NRNestCameraFetcher shared] switchOnListenerForCameraID:cam_id 
                                                            handler:
           ^(CameraEvent* event)
           {

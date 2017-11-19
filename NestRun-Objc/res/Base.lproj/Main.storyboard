@@ -307,12 +307,24 @@
                                             <action selector="onStartButton:" destination="0Q3-Sc-GWQ" eventType="touchUpInside" id="POE-J7-hvn"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEi-sK-a2k">
+                                        <rect key="frame" x="303" y="26.5" width="64" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="stream test">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onStreamTestButton:" destination="0Q3-Sc-GWQ" eventType="touchUpInside" id="ChP-3u-8P9"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" name="darkBack"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="yEi-sK-a2k" secondAttribute="trailing" constant="8" id="6S1-Jf-Vvh"/>
                                     <constraint firstAttribute="height" constant="80" id="76x-sq-uNP"/>
                                     <constraint firstItem="opW-tx-zQg" firstAttribute="centerY" secondItem="dfB-9t-b6t" secondAttribute="centerY" id="89w-Bl-e2r"/>
                                     <constraint firstItem="opW-tx-zQg" firstAttribute="centerX" secondItem="dfB-9t-b6t" secondAttribute="centerX" id="hId-7l-RWx"/>
+                                    <constraint firstItem="yEi-sK-a2k" firstAttribute="centerY" secondItem="dfB-9t-b6t" secondAttribute="centerY" id="hKl-YB-FE6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkN-fa-4Ff" userLabel="content container">
@@ -398,6 +410,7 @@
                         <outlet property="contentContainer" destination="zkN-fa-4Ff" id="jY1-21-eGd"/>
                         <outlet property="playerList" destination="Ilb-1H-8A3" id="E9K-w5-HbB"/>
                         <outlet property="startButton" destination="opW-tx-zQg" id="hCD-4r-Zio"/>
+                        <outlet property="streamTestButton" destination="yEi-sK-a2k" id="qkR-y0-3Zu"/>
                         <outlet property="topContainer" destination="hTo-aj-kJI" id="Ftk-2c-hlQ"/>
                     </connections>
                 </viewController>
@@ -425,7 +438,7 @@
             <color red="0.32300001382827759" green="0.32199999690055847" blue="0.32499998807907104" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="textLiteGray">
-            <color red="0.50599998235702515" green="0.50300002098083496" blue="0.50900000333786011" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.54500001668930054" green="0.54199999570846558" blue="0.54799997806549072" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="whiteText">
             <color red="0.99500000476837158" green="0.99000000953674316" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

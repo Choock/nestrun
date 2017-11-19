@@ -974,8 +974,5 @@
         <namedColor name="whiteText">
             <color red="0.99500000476837158" green="0.99000000953674316" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="whiteText">
-            <color red="0.99500000476837158" green="0.99000000953674316" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
     </resources>
 </document>

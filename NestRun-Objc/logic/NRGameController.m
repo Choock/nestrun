@@ -182,6 +182,7 @@
 }
 - (void) gameOver
 {
+    [[NRNestCameraFetcher shared] stopCamerasObserving];
     [_runTimer invalidate];
     [_currentRun cancel];
     [_display gameOver];

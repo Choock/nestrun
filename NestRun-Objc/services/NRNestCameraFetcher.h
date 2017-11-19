@@ -38,7 +38,9 @@ typedef void (^CameraEventHandler)(CameraEvent*);
     - (void) fetchCameras:(FetcherCompletionHandler)handler;
 
     - (void) startCamerasObserving;
+    - (void) stopCamerasObserving;
     - (void) startSimulatedCamerasObserving:(NSString*)eventName;
+
     - (void) switchOnListenerForCameraID:(NSString*)cid handler:(CameraEventHandler)event;
     - (void) switchOffListenerForCameraID:(NSString*)cid;
 

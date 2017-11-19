@@ -61,9 +61,9 @@
 #pragma mark - ACCESS SERVICE
 
 static NSString* NEST_HOST           = @"home.nest.com";
-static NSString* NEST_PRODICT_ID     = @"e68c8ac7-2708-449a-a7e4-b008a63ef820";
-static NSString* NEST_PRODUCT_SECRET = @"jyxn6RuIwTF5LmRS1oInREc08";
-static NSString* NEST_AUTH_URL       = @"https://home.nest.com/login/oauth2?client_id=e68c8ac7-2708-449a-a7e4-b008a63ef820&state=STATE";
+static NSString* NEST_PRODICT_ID     = @"e68c8ac7-2708-449a-a7e4-b008a63ef820"; // @"8762e0cf-152e-43be-a024-4dc9dd21772e"; //
+static NSString* NEST_PRODUCT_SECRET = @"jyxn6RuIwTF5LmRS1oInREc08"; // @"gnIgp8hRGrceKYraYhNmlJ5P4"; //
+static NSString* NEST_AUTH_URL       = @"https://home.nest.com/login/oauth2?client_id=e68c8ac7-2708-449a-a7e4-b008a63ef820&state=STATE"; // @"https://home.nest.com/login/oauth2?client_id=8762e0cf-152e-43be-a024-4dc9dd21772e&state=STATE";//
 static NSString* PRODUCT_REDIR_HOST  = @"https://localhost:8080";
 static NSString* PRODUCT_REDIR_PATH  = @"/auth/nest/callback";
 static NSString* NEST_API_URL        = @"https://developer-api.nest.com";

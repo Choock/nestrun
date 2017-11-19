@@ -107,18 +107,23 @@
 - (void) startSimulatedCamerasObserving:(NSString*)eventName
 {
     sseSource = [NREventSource eventSourceWithEventListener:eventName];
-    [self addCameraEventListener];
+    [self addCameraEventListeners];
 }
 
 - (void) startCamerasObserving
 {
     sseSource = [NREventSource eventSourceWithURL:[NRNestAccessService shared].camerasURL];
-    [self addCameraEventListener];
+    [self addCameraEventListeners];
+}
+- (void) stopCamerasObserving
+{
+    sseSource = nil;
 }
 
-- (void) addCameraEventListener
+- (void) addCameraEventListeners
 {
     NRNestCameraFetcher* __weak wself = self;
+    // New data event
     [sseSource addEventListener:@"put" handler:^(Event *e) 
      {
          NSData* json_data = [e.data dataUsingEncoding:NSUTF8StringEncoding];
@@ -132,10 +137,20 @@
          }
      }];
     
-    // ALL EVENTS: very messy, do not uncomment
-    //    [source onMessage:^(Event *e) {
-    //        NSLog(@"%@: %@", e.event, e.data);
-    //    }];
+    // Service events:
+    [sseSource addEventListener:@"open" handler:^(Event *e) 
+     {
+         NSLog(@"Camera stream open: %@",e);
+     }];
+    [sseSource addEventListener:@"auth_revoked" handler:^(Event *e) 
+     {
+         NSLog(@"Authorization revoked, connection closed: %@",e);
+     }];
+    [sseSource addEventListener:@"error" handler:^(Event *e) 
+     {;
+         NSLog(@"Camera stream connection error: %@",e);
+     }];
+    
 }
 - (void) fetchCameras:(FetcherCompletionHandler)handler
 {
@@ -188,7 +203,8 @@
         CameraEventHandler handler = _cameraEventListeners[cid];
         if(handler == nil)
         {
-            NSLog(@"NestCameraFetches: event not handled - no handler registersd for the cam id: %@",cid);
+            NSString* cam_name = [_cameraIDs allKeysForObject:cid].firstObject;
+            NSLog(@"NestCameraFetches: event not handled - no handler registersd for the cam id: %@",cam_name);
             return;
         }
         
